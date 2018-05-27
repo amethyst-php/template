@@ -20,7 +20,7 @@ class CreateTemplatesTable extends Migration
             $table->string('filetype');
             $table->text('description')->nullable(); 
             $table->text('mock_data'); 
-            $table->longtext('template'); 
+            $table->longtext('content'); 
             $table->timestamps(); 
         });
     }
