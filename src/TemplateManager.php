@@ -55,4 +55,51 @@ class TemplateManager extends ModelManager
 
         parent::__construct($agent);
     }
+    /**
+     * Retrieve the generator given the template or throw exception
+     *
+     * @param Template $template
+     *
+     * @return \Railken\LaraOre\Generators\GeneratorContract
+     */
+    public function getGeneratorOrFail(Template $template)
+    {
+        $generators = config("ore.template.generators");
+
+        $generator = isset($generators[$template->filetype]) ? $generators[$template->filetype] : null;
+
+        if (!$generator) {
+            throw new \Exception(sprintf("No generator found for: %s", $template->filetype));
+        }
+
+        return $generator;
+    }
+
+    /**
+     * Render given template with data
+     *
+     * @param Template $template
+     * @param array $data
+     *
+     * @return mixed
+     */
+    public function render(Template $template, array $data)
+    {
+        $generator = $this->getGeneratorOrFail($template);
+        $generator = new $generator;
+
+        return $generator->render($template->content, $data);
+    }
+
+    /**
+     * Render mock template
+     *
+     * @param Template $template
+     *
+     * @return mixed
+     */
+    public function renderMock(Template $template)
+    {
+        return $this->render($template, $template->mock_data);
+    }
 }
