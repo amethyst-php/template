@@ -9,9 +9,8 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app)
     {
         return [
-            \Railken\LaraOre\Template\TemplateServiceProvider::class,
             \Railken\Laravel\Manager\ManagerServiceProvider::class,
-            \Railken\Laravel\App\AppServiceProvider::class,
+            \Railken\LaraOre\Template\TemplateServiceProvider::class,
         ];
     }
 

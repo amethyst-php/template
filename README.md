@@ -49,6 +49,6 @@ return [
     | This is the table used to save templates to the database
     |
     */
-    'table' => 'ore_templatesf',
+    'table' => 'ore_templates',
 ];
 ```
