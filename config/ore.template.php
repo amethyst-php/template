@@ -11,4 +11,17 @@ return [
     |
     */
     'table' => 'ore_templates',
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | File Generators
+    |--------------------------------------------------------------------------
+    |
+    | File generators
+    |
+    */
+    'generators' => [
+    	'application/pdf' => "Railken\LaraOre\Template\Generators\PdfGenerator"
+    ]
 ];

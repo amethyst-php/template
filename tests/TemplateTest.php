@@ -34,7 +34,7 @@ class TemplateTest extends BaseTest
         
         $bag->set('name', 'a common name');
         $bag->set('filename', 'test.pdf');
-        $bag->set('filetype', 'pdf');
+        $bag->set('filetype', 'application/pdf');
         $bag->set('description', 'A description');
         $bag->set('content', 'A {{ message }}');
         $bag->set('mock_data', ['message' => 'Uhm']);
@@ -45,5 +45,10 @@ class TemplateTest extends BaseTest
     public function testSuccessCommon()
     {
         $this->commonTest($this->getManager(), $this->getParameters());
+    }
+
+    public function testRender()
+    {
+
     }
 }
