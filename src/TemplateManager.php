@@ -64,7 +64,7 @@ class TemplateManager extends ModelManager
      */
     public function getGeneratorOrFail(Template $template)
     {
-        $generators = config("ore.template.generators");
+        $generators = config("ore.template.generators", []);
 
         $generator = isset($generators[$template->filetype]) ? $generators[$template->filetype] : null;
 

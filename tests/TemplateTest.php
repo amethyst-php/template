@@ -43,6 +43,10 @@ class TemplateTest extends BaseTest
         return $bag;
     }
 
+    public function testIni()
+    {
+        $this->assertEquals(1, 1);
+    }
     public function testSuccessCommon()
     {
         $this->commonTest($this->getManager(), $this->getParameters());

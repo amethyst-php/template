@@ -39,7 +39,6 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
             '--provider' => 'Railken\LaraOre\Template\TemplateServiceProvider',
             '--force' => true,
         ]);
-
         $this->artisan('migrate:fresh');
         $this->artisan('migrate');
     }
