@@ -60,6 +60,6 @@ class FiletypeAttribute extends BaseAttribute
      */
     public function valid(EntityContract $entity, $value)
     {
-        return v::length(1, 255)->validate($value);
+        return in_array($value, array_keys(config("ore.template.generators")));
     }
 }
