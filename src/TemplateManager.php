@@ -21,14 +21,14 @@ class TemplateManager extends ModelManager
      * @var array
      */
     protected $attributes = [
-        Attributes\Id\IdAttribute::class, 
-        Attributes\Name\NameAttribute::class, 
-        Attributes\CreatedAt\CreatedAtAttribute::class, 
-        Attributes\UpdatedAt\UpdatedAtAttribute::class, 
-        Attributes\Filename\FilenameAttribute::class, 
+        Attributes\Id\IdAttribute::class,
+        Attributes\Name\NameAttribute::class,
+        Attributes\CreatedAt\CreatedAtAttribute::class,
+        Attributes\UpdatedAt\UpdatedAtAttribute::class,
+        Attributes\Filename\FilenameAttribute::class,
         Attributes\Filetype\FiletypeAttribute::class,
-        Attributes\Description\DescriptionAttribute::class, 
-        Attributes\MockData\MockDataAttribute::class, 
+        Attributes\Description\DescriptionAttribute::class,
+        Attributes\MockData\MockDataAttribute::class,
         Attributes\Content\ContentAttribute::class
     ];
 

@@ -46,5 +46,4 @@ class TemplateTest extends BaseTest
     {
         $this->commonTest($this->getManager(), $this->getParameters());
     }
-
 }

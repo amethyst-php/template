@@ -6,7 +6,7 @@ use Railken\Laravel\Manager\ModelRepository;
 
 class TemplateRepository extends ModelRepository
 {
-	
+    
     /**
      * Class name entity.
      *
