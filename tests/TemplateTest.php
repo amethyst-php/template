@@ -48,10 +48,16 @@ class TemplateTest extends BaseTest
         $this->commonTest($this->getManager(), $this->getParameters());
     }
 
-    public function testRender()
+    public function testPdfRender()
     {
 
-        $rendered = $this->getManager()->renderMock($this->getManager()->create($this->getParameters())->getResource());
+        $parameters = $this->getParameters()
+            ->set('filetype', 'application/pdf')
+            ->set('content', 'The cake is a {{ message }}')
+            ->set('mock_data', ['message' => 'lie']);
+
+        $resource = $this->getManager()->create($parameters)->getResource();
+        $rendered = $this->getManager()->renderMock($resource);
              
         $tmpfile = __DIR__."/../var/cache/templatepdfrender.pdf"; 
 
@@ -62,6 +68,20 @@ class TemplateTest extends BaseTest
         file_put_contents($tmpfile, $rendered); 
  
         $this->assertEquals("The cake is a lie", Pdf::getText($tmpfile)); 
+ 
+    } 
+
+    public function testHtmlRender()
+    {
+        $parameters = $this->getParameters()
+            ->set('filetype', 'text/html')
+            ->set('content', 'The cake is a <b>{{ message }}</b>')
+            ->set('mock_data', ['message' => 'lie']);
+
+        $resource = $this->getManager()->create($parameters)->getResource();
+        $rendered = $this->getManager()->renderMock($resource);
+ 
+        $this->assertEquals("The cake is a <b>lie</b>", $rendered); 
  
     } 
  

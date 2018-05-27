@@ -6,18 +6,14 @@ use Railken\LaraOre\Template\Template;
 use Illuminate\Support\Facades\App; 
 use Twig; 
 
-class PdfGenerator extends BaseGenerator
+class HtmlGenerator extends BaseGenerator
 {
-
 	public function render($content, $data) 
     {
-
         $name = 'tmp-'.md5(microtime());
 
         $filename = $this->generateViewFile($content, $name); 
 
-        $pdf = App::make('dompdf.wrapper'); 
-        $pdf->loadHtml(Twig::render($filename, $data)); 
-        return $pdf->stream(); 
+        return Twig::render($filename, $data); 
     } 
 }
