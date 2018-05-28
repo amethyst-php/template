@@ -9,6 +9,7 @@ addons:
   apt:
     packages:
       - libxml2-utils
+      - poppler-utils
       
 php:
   - 7.1
