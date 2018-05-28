@@ -60,7 +60,7 @@ class TemplateManager extends ModelManager
      *
      * @param Template $template
      *
-     * @return \Railken\LaraOre\Generators\GeneratorContract
+     * @return \Railken\LaraOre\Template\Generators\GeneratorContract
      */
     public function getGeneratorOrFail(Template $template)
     {

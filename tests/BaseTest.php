@@ -11,17 +11,17 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         return [
             \Railken\Laravel\Manager\ManagerServiceProvider::class,
             \Railken\LaraOre\Template\TemplateServiceProvider::class,
-            \Barryvdh\DomPDF\ServiceProvider::class, 
-            \TwigBridge\ServiceProvider::class, 
+            \Barryvdh\DomPDF\ServiceProvider::class,
+            \TwigBridge\ServiceProvider::class,
         ];
     }
 
-    protected function getPackageAliases($app) 
-    { 
-        return [ 
-            'Twig' => \TwigBridge\Facade\Twig::class, 
-        ]; 
-    } 
+    protected function getPackageAliases($app)
+    {
+        return [
+            'Twig' => \TwigBridge\Facade\Twig::class,
+        ];
+    }
 
     /**
      * Setup the test environment.

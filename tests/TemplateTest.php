@@ -54,7 +54,6 @@ class TemplateTest extends BaseTest
 
     public function testPdfRender()
     {
-
         $parameters = $this->getParameters()
             ->set('filetype', 'application/pdf')
             ->set('content', 'The cake is a {{ message }}')
@@ -63,17 +62,16 @@ class TemplateTest extends BaseTest
         $resource = $this->getManager()->create($parameters)->getResource();
         $rendered = $this->getManager()->renderMock($resource);
              
-        $tmpfile = __DIR__."/../var/cache/templatepdfrender.pdf"; 
+        $tmpfile = __DIR__."/../var/cache/templatepdfrender.pdf";
 
         if (!file_exists(dirname($tmpfile))) {
             mkdir(dirname($tmpfile), 0755, true);
         }
  
-        file_put_contents($tmpfile, $rendered); 
+        file_put_contents($tmpfile, $rendered);
  
-        $this->assertEquals("The cake is a lie", Pdf::getText($tmpfile)); 
- 
-    } 
+        $this->assertEquals("The cake is a lie", Pdf::getText($tmpfile));
+    }
 
     public function testHtmlRender()
     {
@@ -85,8 +83,6 @@ class TemplateTest extends BaseTest
         $resource = $this->getManager()->create($parameters)->getResource();
         $rendered = $this->getManager()->renderMock($resource);
  
-        $this->assertEquals("The cake is a <b>lie</b>", $rendered); 
- 
-    } 
- 
+        $this->assertEquals("The cake is a <b>lie</b>", $rendered);
+    }
 }

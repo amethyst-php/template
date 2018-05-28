@@ -3,8 +3,8 @@
 namespace Railken\LaraOre\Template\Generators;
 
 use Railken\LaraOre\Template\Template;
-use Illuminate\Support\Facades\App; 
-use Twig; 
+use Illuminate\Support\Facades\App;
+use Twig;
 
 class BaseGenerator implements GeneratorContract
 {
