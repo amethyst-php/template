@@ -6,7 +6,7 @@
 A laravel package to create templates: .html, .xls, .csv, .pdf
 # Requirements
 
-PHP 7.1.0 and later.
+PHP 7.1 and later.
 
 
 ## Installation
