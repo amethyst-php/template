@@ -23,6 +23,7 @@ return [
     */
     'generators' => [
         'application/pdf' => "Railken\LaraOre\Template\Generators\PdfGenerator",
-        'text/html' => "Railken\LaraOre\Template\Generators\HtmlGenerator"
+        'text/html' => "Railken\LaraOre\Template\Generators\HtmlGenerator",
+        'text/plain' => "Railken\LaraOre\Template\Generators\TextGenerator"
     ]
 ];

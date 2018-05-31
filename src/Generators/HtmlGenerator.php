@@ -10,9 +10,7 @@ class HtmlGenerator extends BaseGenerator
 {
     public function render($content, $data)
     {
-        $name = 'tmp-'.md5(microtime());
-
-        $filename = $this->generateViewFile($content, $name);
+        $filename = $this->generateViewFile($content);
 
         return Twig::render($filename, $data);
     }

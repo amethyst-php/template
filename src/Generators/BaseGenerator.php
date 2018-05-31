@@ -13,12 +13,13 @@ class BaseGenerator implements GeneratorContract
      * Generate a view file
      *
      * @param string $html
-     * @param string $url
      *
      * @return string
      */
-    public function generateViewFile($html, $name)
+    public function generateViewFile($html)
     {
+        $name = $this->getRandomName();
+
         $path = config('view.paths.0');
 
         $view = 'cache/'.$name.'-'.hash('sha1', $name);
@@ -30,5 +31,15 @@ class BaseGenerator implements GeneratorContract
         file_put_contents($filename, $html);
 
         return $filename;
+    }
+
+    /**
+     * Get random file
+     *
+     * @return string
+     */
+    public function getRandomName()
+    {
+        return "tmp-".sha1(microtime(true));
     }
 }
