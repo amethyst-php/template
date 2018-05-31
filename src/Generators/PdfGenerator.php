@@ -14,6 +14,6 @@ class PdfGenerator extends BaseGenerator
 
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHtml(Twig::render($filename, $data));
-        return $pdf->stream();
+        return $pdf->stream()->getContent();
     }
 }
