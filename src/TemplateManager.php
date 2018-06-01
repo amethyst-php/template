@@ -58,18 +58,18 @@ class TemplateManager extends ModelManager
     /**
      * Retrieve the generator given the template or throw exception
      *
-     * @param Template $template
+     * @param string $filetype
      *
      * @return \Railken\LaraOre\Template\Generators\GeneratorContract
      */
-    public function getGeneratorOrFail(Template $template)
+    public function getGeneratorOrFail(string $filetype)
     {
         $generators = config("ore.template.generators", []);
 
-        $generator = isset($generators[$template->filetype]) ? $generators[$template->filetype] : null;
+        $generator = isset($generators[$filetype]) ? $generators[$filetype] : null;
 
         if (!$generator) {
-            throw new \Exception(sprintf("No generator found for: %s", $template->filetype));
+            throw new Exceptions\GeneratorNotFoundException(sprintf("No generator found for: %s", $filetype));
         }
 
         return $generator;
@@ -85,10 +85,24 @@ class TemplateManager extends ModelManager
      */
     public function render(Template $template, array $data)
     {
-        $generator = $this->getGeneratorOrFail($template);
+        return $this->renderRaw($template->filetype, $template->content, $data);
+    }
+
+    /**
+     * Render given template with data
+     *
+     * @param string $filetype
+     * @param string $content
+     * @param array $data
+     *
+     * @return mixed
+     */
+    public function renderRaw(string $filetype, string $content, array $data)
+    {
+        $generator = $this->getGeneratorOrFail($filetype);
         $generator = new $generator;
 
-        return $generator->render($template->content, $data);
+        return $generator->render($content, $data);
     }
 
     /**
