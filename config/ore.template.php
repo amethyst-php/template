@@ -24,6 +24,7 @@ return [
     'generators' => [
         'application/pdf' => "Railken\LaraOre\Template\Generators\PdfGenerator",
         'text/html' => "Railken\LaraOre\Template\Generators\HtmlGenerator",
-        'text/plain' => "Railken\LaraOre\Template\Generators\TextGenerator"
+        'text/plain' => "Railken\LaraOre\Template\Generators\TextGenerator",
+        'application/xls' => "Railken\LaraOre\Template\Generators\ExcelGenerator"
     ]
 ];

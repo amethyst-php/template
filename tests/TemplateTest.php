@@ -62,7 +62,7 @@ class TemplateTest extends BaseTest
         $resource = $this->getManager()->create($parameters)->getResource();
         $rendered = $this->getManager()->renderMock($resource);
              
-        $tmpfile = __DIR__."/../var/cache/templatepdfrender.pdf";
+        $tmpfile = __DIR__."/../var/cache/dummy.pdf";
 
         if (!file_exists(dirname($tmpfile))) {
             mkdir(dirname($tmpfile), 0755, true);
@@ -84,5 +84,38 @@ class TemplateTest extends BaseTest
         $rendered = $this->getManager()->renderMock($resource);
  
         $this->assertEquals("The cake is a <b>lie</b>", $rendered);
+    }
+    
+    public function testExcelRender()
+    {
+        $parameters = $this->getParameters()
+            ->set('filetype', 'application/xls')
+            ->set('content', "{% xlsdocument %}
+                {% xlssheet %}
+                    {% xlsrow %}
+                        {% xlscell %}1{% endxlscell %}{# A1 #}
+                        {% xlscell %}2{% endxlscell %}{# B1 #}
+                    {% endxlsrow %}
+                    {% xlsrow %}
+                        {% xlscell %}=A1*B1{% endxlscell %}
+                    {% endxlsrow %}
+                    {% xlsrow %}
+                        {% xlscell %}=SUM(A1:B1){% endxlscell %}
+                    {% endxlsrow %}
+                {% endxlssheet %}
+            {% endxlsdocument %}
+            ")
+            ->set('mock_data', ['message' => 'lie']);
+
+        $resource = $this->getManager()->create($parameters)->getResource();
+        $rendered = $this->getManager()->renderMock($resource);
+             
+        $tmpfile = __DIR__."/../var/cache/dummy.xlsx";
+
+        if (!file_exists(dirname($tmpfile))) {
+            mkdir(dirname($tmpfile), 0755, true);
+        }
+ 
+        file_put_contents($tmpfile, $rendered);
     }
 }
