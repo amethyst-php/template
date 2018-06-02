@@ -9,7 +9,7 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app)
     {
         return [
-            \Railken\LaraOre\Template\TemplateServiceProvider::class,
+            \Railken\LaraOre\TemplateServiceProvider::class,
         ];
     }
 
@@ -27,7 +27,7 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         File::cleanDirectory(database_path("migrations/"));
 
         $this->artisan('vendor:publish', [
-            '--provider' => 'Railken\LaraOre\Template\TemplateServiceProvider',
+            '--provider' => 'Railken\LaraOre\TemplateServiceProvider',
             '--force' => true,
         ]);
         $this->artisan('migrate:fresh');

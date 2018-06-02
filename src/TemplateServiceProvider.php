@@ -1,6 +1,6 @@
 <?php
 
-namespace Railken\LaraOre\Template;
+namespace Railken\LaraOre;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
@@ -34,7 +34,7 @@ class TemplateServiceProvider extends ServiceProvider
         $this->app->register(\Barryvdh\DomPDF\ServiceProvider::class);
         $this->app->register(\TwigBridge\ServiceProvider::class);
         AliasLoader::getInstance()->alias('Twig', \TwigBridge\Facade\Twig::class);
-        
+
         $this->mergeConfigFrom(__DIR__.'/../config/ore.template.php', 'ore.template');
     }
 
