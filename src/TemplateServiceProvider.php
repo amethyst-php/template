@@ -5,6 +5,7 @@ namespace Railken\LaraOre\Template;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\AliasLoader;
 
 class TemplateServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,12 @@ class TemplateServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->register(\Railken\Laravel\Manager\ManagerServiceProvider::class);
+        $this->app->register(\Barryvdh\DomPDF\ServiceProvider::class);
+        $this->app->register(\TwigBridge\ServiceProvider::class);
+        AliasLoader::getInstance()->alias('Twig', \TwigBridge\Facade\Twig::class);
+        
+        $this->mergeConfigFrom(__DIR__.'/../config/ore.template.php', 'ore.template');
     }
 
     /**
