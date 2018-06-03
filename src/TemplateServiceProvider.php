@@ -51,7 +51,7 @@ class TemplateServiceProvider extends ServiceProvider
 
         if (!class_exists('CreateTemplatesTable')) {
             $this->publishes([
-                __DIR__.'/../database/migrations/create_templates_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_templates_table.php'),
+                __DIR__.'/../database/migrations/create_templates_table.php.stub' => database_path('migrations/'.(new \DateTime())->format("Y_m_d_His.u").'_create_templates_table.php'),
             ], 'migrations');
         }
     }
