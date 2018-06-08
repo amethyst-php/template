@@ -26,5 +26,13 @@ return [
         'text/html' => "Railken\LaraOre\Template\Generators\HtmlGenerator",
         'text/plain' => "Railken\LaraOre\Template\Generators\TextGenerator",
         'application/xls' => "Railken\LaraOre\Template\Generators\ExcelGenerator"
+    ],    
+
+    'router' => [
+        'prefix' => 'admin/templates',
+        'middlewares' => [
+            \Railken\LaraOre\RequestLoggerMiddleware::class,
+            'auth:api',
+        ]
     ]
 ];

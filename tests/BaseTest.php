@@ -3,6 +3,7 @@
 namespace Railken\LaraOre\Template\Tests;
 
 use Illuminate\Support\Facades\File;
+use Railken\Bag;
 
 abstract class BaseTest extends \Orchestra\Testbench\TestCase
 {
@@ -13,6 +14,24 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         ];
     }
 
+    /**
+     * Retrieve correct bag of parameters.
+     *
+     * @return Bag
+     */
+    public function getParameters()
+    {
+        $bag = new Bag();
+        
+        $bag->set('name', 'a common name'.microtime());
+        $bag->set('filename', 'test.pdf');
+        $bag->set('filetype', 'application/pdf');
+        $bag->set('description', 'A description');
+        $bag->set('content', 'The cake is a {{ message }}');
+        $bag->set('mock_data', ['message' => 'lie']);
+
+        return $bag;
+    }
 
     /**
      * Setup the test environment.
@@ -24,13 +43,9 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
 
         parent::setUp();
 
-        File::cleanDirectory(database_path("migrations/"));
-
-        $this->artisan('vendor:publish', [
-            '--provider' => 'Railken\LaraOre\TemplateServiceProvider',
-            '--force' => true,
-        ]);
         $this->artisan('migrate:fresh');
+        $this->artisan('vendor:publish', ['--provider' => 'Railken\LaraOre\TemplateServiceProvider', '--force' => true]);
+        $this->artisan('lara-ore:user:install');
         $this->artisan('migrate');
     }
 }

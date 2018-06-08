@@ -2,17 +2,14 @@
 
 namespace Railken\LaraOre\Template\Tests;
 
-use Railken\Bag;
 use Railken\LaraOre\Template\TemplateManager;
 use Illuminate\Support\Facades\Storage;
 use Spatie\PdfToText\Pdf;
+use Railken\LaraOre\Support\Testing\ManagerTestableTrait;
 
-/**
- * Template
- */
 class TemplateTest extends BaseTest
 {
-    use Traits\CommonTrait;
+    use ManagerTestableTrait;
     
     /**
      * Retrieve basic url.
@@ -24,24 +21,6 @@ class TemplateTest extends BaseTest
         return new TemplateManager();
     }
 
-    /**
-     * Retrieve correct bag of parameters.
-     *
-     * @return Bag
-     */
-    public function getParameters()
-    {
-        $bag = new Bag();
-        
-        $bag->set('name', 'a common name'.microtime());
-        $bag->set('filename', 'test.pdf');
-        $bag->set('filetype', 'application/pdf');
-        $bag->set('description', 'A description');
-        $bag->set('content', 'The cake is a {{ message }}');
-        $bag->set('mock_data', ['message' => 'lie']);
-
-        return $bag;
-    }
 
     public function testIni()
     {
