@@ -7,9 +7,12 @@ services:
 
 addons:
   apt:
+    sources:
+      - mysql-5.7-trusty
     packages:
+      - mysql-server
+      - mysql-client
       - libxml2-utils
-      - poppler-utils
       
 php:
   - 7.1
@@ -34,6 +37,7 @@ install:
   - if [[ "$DEPENDENCIES" = 'low' ]]; then travis_retry composer update $DEFAULT_COMPOSER_FLAGS --prefer-lowest; fi
 
 before_script:
+  - mysql_upgrade -u root 
   - mysql -h localhost -e "CREATE DATABASE homestead;"
   - mysql -h localhost -e "GRANT USAGE ON *.* TO homestead@localhost IDENTIFIED BY 'secret';"
   - mysql -h localhost -e "GRANT ALL PRIVILEGES ON homestead.* TO homestead@localhost;"
