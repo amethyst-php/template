@@ -23,7 +23,7 @@ class TemplatesController extends RestController
         'content',
         'mock_data',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     protected static $fillable = [

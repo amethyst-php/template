@@ -2,15 +2,12 @@
 
 namespace Railken\LaraOre\Template\Generators;
 
-use Railken\LaraOre\Template\Template;
-use Illuminate\Support\Facades\App;
 use Twig;
 
 class BaseGenerator implements GeneratorContract
 {
-
     /**
-     * Generate a view file
+     * Generate a view file.
      *
      * @param string $html
      *
@@ -34,12 +31,12 @@ class BaseGenerator implements GeneratorContract
     }
 
     /**
-     * Get random file
+     * Get random file.
      *
      * @return string
      */
     public function getRandomName()
     {
-        return "tmp-".sha1(microtime(true));
+        return 'tmp-'.sha1(microtime(true));
     }
 }

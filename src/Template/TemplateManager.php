@@ -14,7 +14,7 @@ class TemplateManager extends ModelManager
      * @var string
      */
     public $entity = Template::class;
-    
+
     /**
      * List of all attributes.
      *
@@ -29,7 +29,7 @@ class TemplateManager extends ModelManager
         Attributes\Filetype\FiletypeAttribute::class,
         Attributes\Description\DescriptionAttribute::class,
         Attributes\MockData\MockDataAttribute::class,
-        Attributes\Content\ContentAttribute::class
+        Attributes\Content\ContentAttribute::class,
     ];
 
     /**
@@ -55,8 +55,9 @@ class TemplateManager extends ModelManager
 
         parent::__construct($agent);
     }
+
     /**
-     * Retrieve the generator given the template or throw exception
+     * Retrieve the generator given the template or throw exception.
      *
      * @param string $filetype
      *
@@ -64,22 +65,22 @@ class TemplateManager extends ModelManager
      */
     public function getGeneratorOrFail(string $filetype)
     {
-        $generators = config("ore.template.generators", []);
+        $generators = config('ore.template.generators', []);
 
         $generator = isset($generators[$filetype]) ? $generators[$filetype] : null;
 
         if (!$generator) {
-            throw new Exceptions\GeneratorNotFoundException(sprintf("No generator found for: %s", $filetype));
+            throw new Exceptions\GeneratorNotFoundException(sprintf('No generator found for: %s', $filetype));
         }
 
         return $generator;
     }
 
     /**
-     * Render given template with data
+     * Render given template with data.
      *
      * @param Template $template
-     * @param array $data
+     * @param array    $data
      *
      * @return mixed
      */
@@ -89,24 +90,24 @@ class TemplateManager extends ModelManager
     }
 
     /**
-     * Render given template with data
+     * Render given template with data.
      *
      * @param string $filetype
      * @param string $content
-     * @param array $data
+     * @param array  $data
      *
      * @return mixed
      */
     public function renderRaw(string $filetype, string $content, array $data)
     {
         $generator = $this->getGeneratorOrFail($filetype);
-        $generator = new $generator;
+        $generator = new $generator();
 
         return $generator->render($content, $data);
     }
 
     /**
-     * Render mock template
+     * Render mock template.
      *
      * @param Template $template
      *

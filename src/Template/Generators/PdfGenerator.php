@@ -2,7 +2,6 @@
 
 namespace Railken\LaraOre\Template\Generators;
 
-use Railken\LaraOre\Template\Template;
 use Illuminate\Support\Facades\App;
 use Twig;
 
@@ -14,6 +13,7 @@ class PdfGenerator extends BaseGenerator
 
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHtml(Twig::render($filename, $data));
+
         return $pdf->stream()->getContent();
     }
 }

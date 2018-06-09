@@ -2,10 +2,8 @@
 
 namespace Railken\LaraOre\Template\Generators;
 
-use Railken\LaraOre\Template\Template;
-use Illuminate\Support\Facades\App;
-use Twig;
 use MewesK\TwigExcelBundle\Twig\TwigExcelExtension;
+use Twig;
 
 class ExcelGenerator extends BaseGenerator
 {
@@ -13,7 +11,7 @@ class ExcelGenerator extends BaseGenerator
     {
         Twig::addExtension(new TwigExcelExtension());
     }
-    
+
     public function render($content, $data)
     {
         $filename = $this->generateViewFile($content);

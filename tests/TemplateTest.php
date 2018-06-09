@@ -2,15 +2,14 @@
 
 namespace Railken\LaraOre\Template\Tests;
 
-use Railken\LaraOre\Template\TemplateManager;
-use Illuminate\Support\Facades\Storage;
-use Spatie\PdfToText\Pdf;
 use Railken\LaraOre\Support\Testing\ManagerTestableTrait;
+use Railken\LaraOre\Template\TemplateManager;
+use Spatie\PdfToText\Pdf;
 
 class TemplateTest extends BaseTest
 {
     use ManagerTestableTrait;
-    
+
     /**
      * Retrieve basic url.
      *
@@ -21,11 +20,11 @@ class TemplateTest extends BaseTest
         return new TemplateManager();
     }
 
-
     public function testIni()
     {
         $this->assertEquals(1, 1);
     }
+
     public function testSuccessCommon()
     {
         $this->commonTest($this->getManager(), $this->getParameters());
@@ -40,16 +39,16 @@ class TemplateTest extends BaseTest
 
         $resource = $this->getManager()->create($parameters)->getResource();
         $rendered = $this->getManager()->renderMock($resource);
-             
-        $tmpfile = __DIR__."/../var/cache/dummy.pdf";
+
+        $tmpfile = __DIR__.'/../var/cache/dummy.pdf';
 
         if (!file_exists(dirname($tmpfile))) {
             mkdir(dirname($tmpfile), 0755, true);
         }
- 
+
         file_put_contents($tmpfile, $rendered);
- 
-        $this->assertEquals("The cake is a lie", Pdf::getText($tmpfile));
+
+        $this->assertEquals('The cake is a lie', Pdf::getText($tmpfile));
     }
 
     public function testHtmlRender()
@@ -61,15 +60,15 @@ class TemplateTest extends BaseTest
 
         $resource = $this->getManager()->create($parameters)->getResource();
         $rendered = $this->getManager()->renderMock($resource);
- 
-        $this->assertEquals("The cake is a <b>lie</b>", $rendered);
+
+        $this->assertEquals('The cake is a <b>lie</b>', $rendered);
     }
-    
+
     public function testExcelRender()
     {
         $parameters = $this->getParameters()
             ->set('filetype', 'application/xls')
-            ->set('content', "{% xlsdocument %}
+            ->set('content', '{% xlsdocument %}
                 {% xlssheet %}
                     {% xlsrow %}
                         {% xlscell %}1{% endxlscell %}{# A1 #}
@@ -83,18 +82,18 @@ class TemplateTest extends BaseTest
                     {% endxlsrow %}
                 {% endxlssheet %}
             {% endxlsdocument %}
-            ")
+            ')
             ->set('mock_data', ['message' => 'lie']);
 
         $resource = $this->getManager()->create($parameters)->getResource();
         $rendered = $this->getManager()->renderMock($resource);
-             
-        $tmpfile = __DIR__."/../var/cache/dummy.xlsx";
+
+        $tmpfile = __DIR__.'/../var/cache/dummy.xlsx';
 
         if (!file_exists(dirname($tmpfile))) {
             mkdir(dirname($tmpfile), 0755, true);
         }
- 
+
         file_put_contents($tmpfile, $rendered);
     }
 }

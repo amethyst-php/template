@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTemplatesTable extends Migration
 {
@@ -15,14 +15,14 @@ class CreateTemplatesTable extends Migration
     public function up()
     {
         Schema::create(Config::get('ore.template.table'), function (Blueprint $table) {
-            $table->increments('id'); 
-            $table->string('name'); 
-            $table->string('filename'); 
+            $table->increments('id');
+            $table->string('name');
+            $table->string('filename');
             $table->string('filetype');
-            $table->text('description')->nullable(); 
-            $table->text('mock_data'); 
-            $table->longtext('content'); 
-            $table->timestamps(); 
+            $table->text('description')->nullable();
+            $table->text('mock_data');
+            $table->longtext('content');
+            $table->timestamps();
         });
     }
 
