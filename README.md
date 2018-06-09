@@ -1,7 +1,8 @@
 # lara-ore-template
 
-[![Build Status](https://travis-ci.org/railken/lara-ore-template.svg?branch=master)](https://travis-ci.org/railken/lara-ore-template)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://img.shields.io/travis/railken/lara-ore-template/master.svg?style=flat-square)](https://travis-ci.org/railken/lara-ore-template)
+[![StyleCI](https://github.styleci.io/repos/135063291/shield?branch=master)](https://github.styleci.io/repos/135063291)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 A laravel package to create templates: .html, .xls, .csv, .pdf
 # Requirements
