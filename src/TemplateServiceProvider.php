@@ -2,11 +2,9 @@
 
 namespace Railken\LaraOre;
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\ServiceProvider;
 use Railken\LaraOre\Api\Support\Router;
 
 class TemplateServiceProvider extends ServiceProvider
@@ -60,6 +58,7 @@ class TemplateServiceProvider extends ServiceProvider
 
         $this->mergeConfigFrom(__DIR__.'/../config/ore.template.php', 'ore.template');
     }
+
     /**
      * Load routes.
      *

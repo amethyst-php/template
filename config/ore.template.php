@@ -12,7 +12,6 @@ return [
     */
     'table' => 'ore_templates',
 
-
     /*
     |--------------------------------------------------------------------------
     | File Generators
@@ -23,16 +22,16 @@ return [
     */
     'generators' => [
         'application/pdf' => "Railken\LaraOre\Template\Generators\PdfGenerator",
-        'text/html' => "Railken\LaraOre\Template\Generators\HtmlGenerator",
-        'text/plain' => "Railken\LaraOre\Template\Generators\TextGenerator",
-        'application/xls' => "Railken\LaraOre\Template\Generators\ExcelGenerator"
-    ],    
+        'text/html'       => "Railken\LaraOre\Template\Generators\HtmlGenerator",
+        'text/plain'      => "Railken\LaraOre\Template\Generators\TextGenerator",
+        'application/xls' => "Railken\LaraOre\Template\Generators\ExcelGenerator",
+    ],
 
     'router' => [
-        'prefix' => 'admin/templates',
+        'prefix'      => 'admin/templates',
         'middlewares' => [
             \Railken\LaraOre\RequestLoggerMiddleware::class,
             'auth:api',
-        ]
-    ]
+        ],
+    ],
 ];

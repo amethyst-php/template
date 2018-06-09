@@ -3,12 +3,11 @@
 namespace Railken\LaraOre\Template;
 
 use Illuminate\Database\Eloquent\Model;
-use Railken\Laravel\Manager\Contracts\EntityContract;
 use Illuminate\Support\Facades\Config;
+use Railken\Laravel\Manager\Contracts\EntityContract;
 
 class Template extends Model implements EntityContract
 {
-
     /**
      * The table associated with the model.
      *
@@ -27,9 +26,9 @@ class Template extends Model implements EntityContract
         'filename',
         'filetype',
         'content',
-        'mock_data'
+        'mock_data',
     ];
-    
+
     /**
      * The attributes that should be cast to native types.
      *

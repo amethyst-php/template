@@ -2,11 +2,10 @@
 
 namespace Railken\LaraOre\Template\Attributes\Filetype;
 
+use Illuminate\Support\Facades\Config;
 use Railken\Laravel\Manager\Attributes\BaseAttribute;
 use Railken\Laravel\Manager\Contracts\EntityContract;
 use Railken\Laravel\Manager\Tokens;
-use Respect\Validation\Validator as v;
-use Illuminate\Support\Facades\Config;
 
 class FiletypeAttribute extends BaseAttribute
 {
@@ -61,6 +60,6 @@ class FiletypeAttribute extends BaseAttribute
      */
     public function valid(EntityContract $entity, $value)
     {
-        return in_array($value, array_keys(Config::get("ore.template.generators", [])));
+        return in_array($value, array_keys(Config::get('ore.template.generators', [])));
     }
 }

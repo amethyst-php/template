@@ -2,7 +2,6 @@
 
 namespace Railken\LaraOre\Template\Tests;
 
-use Illuminate\Support\Facades\File;
 use Railken\Bag;
 
 abstract class BaseTest extends \Orchestra\Testbench\TestCase
@@ -22,7 +21,7 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
     public function getParameters()
     {
         $bag = new Bag();
-        
+
         $bag->set('name', 'a common name'.microtime());
         $bag->set('filename', 'test.pdf');
         $bag->set('filetype', 'application/pdf');
