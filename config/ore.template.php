@@ -28,7 +28,7 @@ return [
     ],
 
     'router' => [
-        'prefix'      => 'admin/templates',
+        'prefix' => '/admin/templates',
         'middlewares' => [
             \Railken\LaraOre\RequestLoggerMiddleware::class,
             'auth:api',
