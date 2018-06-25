@@ -45,8 +45,8 @@ class ApiTest extends BaseTest
         ]);
 
         $this->assertOrPrint($response, 200);
-        $body = $response->getContent();
+        $body = json_decode($response->getContent());
 
-        $this->assertEquals($body, "Hello dear");
+        $this->assertEquals(base64_decode($body->resource), "Hello dear");
     }
 }

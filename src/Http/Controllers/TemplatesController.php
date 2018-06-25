@@ -66,10 +66,7 @@ class TemplatesController extends RestController
     public function render(Request $request)
     {
         $content = $this->manager->renderRaw($request->input('filetype'), $request->input('content'), $request->input('data'));
-
-        $type = $request->input('filetype');
         
-        return response($content)
-            ->header('Content-Type', $type);
+        return $this->success(['resource' => base64_encode($content)]);
     }
 }
