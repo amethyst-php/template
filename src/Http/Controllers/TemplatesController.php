@@ -5,6 +5,7 @@ namespace Railken\LaraOre\Http\Controllers;
 use Railken\LaraOre\Api\Http\Controllers\RestController;
 use Railken\LaraOre\Api\Http\Controllers\Traits as RestTraits;
 use Railken\LaraOre\Template\TemplateManager;
+use Illuminate\Http\Request;
 
 class TemplatesController extends RestController
 {
@@ -53,5 +54,19 @@ class TemplatesController extends RestController
     public function getQuery()
     {
         return $this->manager->repository->getQuery();
+    }
+
+    /** 
+     * Render raw template
+     *
+     * @param \Illuminate\Http\Request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function render(Request $request)
+    {
+        $content = $this->manager->renderRaw($request->input('filetype'), $request->input('content'), $request->input('data'));
+
+        return $this->success(['resource' => $content]);
     }
 }

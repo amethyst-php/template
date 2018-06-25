@@ -74,6 +74,7 @@ class TemplateServiceProvider extends ServiceProvider
             $router->put('/{id}', ['uses' => 'TemplatesController@update']);
             $router->delete('/{id}', ['uses' => 'TemplatesController@remove']);
             $router->get('/{id}', ['uses' => 'TemplatesController@show']);
+            $router->post('/render', ['uses' => 'TemplatesController@render']);
         });
     }
 }

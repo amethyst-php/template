@@ -29,4 +29,25 @@ class ApiTest extends BaseTest
         $this->signIn();
         $this->commonTest($this->getBaseUrl(), $parameters = $this->getParameters());
     }
+
+    /**
+     * @return void
+     */
+    public function testRender()
+    {
+        $this->signIn();
+        $response = $this->post($this->getBaseUrl() . "/render", [
+            'filetype' => 'text/plain',
+            'content' => 'Hello {{ message }}',
+            'data' => [
+                'message' => 'dear'
+            ],
+        ]); 
+
+        $this->assertOrPrint($response, 200);
+        $body = json_decode($response->getContent());
+
+        $this->assertEquals($body->resource, "Hello dear");
+
+    }
 }
