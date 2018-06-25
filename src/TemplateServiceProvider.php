@@ -69,7 +69,7 @@ class TemplateServiceProvider extends ServiceProvider
         Router::group(array_merge(Config::get('ore.template.router'), [
             'namespace' => 'Railken\LaraOre\Http\Controllers',
         ]), function ($router) {
-            $router->get('/render', ['uses' => 'TemplatesController@render']);
+            $router->post('/render', ['uses' => 'TemplatesController@render']);
             $router->get('/', ['uses' => 'TemplatesController@index']);
             $router->post('/', ['uses' => 'TemplatesController@create']);
             $router->put('/{id}', ['uses' => 'TemplatesController@update']);

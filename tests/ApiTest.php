@@ -36,7 +36,7 @@ class ApiTest extends BaseTest
     public function testRender()
     {
         $this->signIn();
-        $response = $this->call('GET', $this->getBaseUrl() . "/render", [
+        $response = $this->post($this->getBaseUrl() . "/render", [
             'filetype' => 'text/plain',
             'content' => 'Hello {{ message }}',
             'data' => [
