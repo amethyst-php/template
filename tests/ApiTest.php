@@ -26,7 +26,6 @@ class ApiTest extends BaseTest
      */
     public function testSuccessCommon()
     {
-        $this->signIn();
         $this->commonTest($this->getBaseUrl(), $parameters = $this->getParameters());
     }
 
@@ -35,7 +34,6 @@ class ApiTest extends BaseTest
      */
     public function testRender()
     {
-        $this->signIn();
         $response = $this->post($this->getBaseUrl() . "/render", [
             'filetype' => 'text/plain',
             'content' => 'Hello {{ message }}',
