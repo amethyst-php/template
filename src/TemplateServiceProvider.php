@@ -51,7 +51,6 @@ class TemplateServiceProvider extends ServiceProvider
     {
         $this->app->register(\Railken\Laravel\Manager\ManagerServiceProvider::class);
         $this->app->register(\Railken\LaraOre\ApiServiceProvider::class);
-        $this->app->register(\Railken\LaraOre\UserServiceProvider::class);
         $this->app->register(\Barryvdh\DomPDF\ServiceProvider::class);
         $this->app->register(\TwigBridge\ServiceProvider::class);
         AliasLoader::getInstance()->alias('Twig', \TwigBridge\Facade\Twig::class);
