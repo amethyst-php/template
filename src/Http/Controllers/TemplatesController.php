@@ -2,12 +2,12 @@
 
 namespace Railken\LaraOre\Http\Controllers;
 
-use Railken\LaraOre\Api\Http\Controllers\RestController;
+use Railken\LaraOre\Api\Http\Controllers\RestConfigurableController;
 use Railken\LaraOre\Api\Http\Controllers\Traits as RestTraits;
 use Railken\LaraOre\Template\TemplateManager;
 use Illuminate\Http\Request;
 
-class TemplatesController extends RestController
+class TemplatesController extends RestConfigurableController
 {
     use RestTraits\RestIndexTrait;
     use RestTraits\RestCreateTrait;
@@ -15,6 +15,18 @@ class TemplatesController extends RestController
     use RestTraits\RestShowTrait;
     use RestTraits\RestRemoveTrait;
 
+    /**
+     * The config path
+     *
+     * @var string
+     */
+    public $config = 'ore.template';
+
+    /**
+     * The attributes that are queryable.
+     *
+     * @var array
+     */
     public $queryable = [
         'id',
         'name',
@@ -27,6 +39,11 @@ class TemplatesController extends RestController
         'updated_at',
     ];
 
+    /**
+     * The attributes that are fillable.
+     *
+     * @var array
+     */
     public $fillable = [
         'name',
         'filename',
@@ -37,29 +54,9 @@ class TemplatesController extends RestController
     ];
 
     /**
-     * Construct.
-     */
-    public function __construct(TemplateManager $manager)
-    {
-        $this->manager = $manager;
-        $this->manager->setAgent($this->getUser());
-        parent::__construct();
-    }
-
-    /**
-     * Create a new instance for query.
-     *
-     * @return \Illuminate\Database\Query\Builder
-     */
-    public function getQuery()
-    {
-        return $this->manager->repository->getQuery();
-    }
-
-    /**
      * Render raw template
      *
-     * @param \Illuminate\Http\Request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */

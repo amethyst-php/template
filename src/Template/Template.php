@@ -54,6 +54,7 @@ class Template extends Model implements EntityContract
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->table = Config::get('ore.template.table', 'ore_templates');
+        $this->table = \Illuminate\Support\Facades\Config::get('ore.template.table');
+        $this->fillable = array_merge($this->fillable, array_keys(Config::get('ore.template.attributes')));
     }
 }

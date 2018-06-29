@@ -5,6 +5,7 @@ namespace Railken\LaraOre\Template;
 use Railken\Laravel\Manager\Contracts\AgentContract;
 use Railken\Laravel\Manager\ModelManager;
 use Railken\Laravel\Manager\Tokens;
+use Illuminate\Support\Facades\Config;
 
 class TemplateManager extends ModelManager
 {
@@ -48,10 +49,20 @@ class TemplateManager extends ModelManager
      */
     public function __construct(AgentContract $agent = null)
     {
-        $this->setRepository(new TemplateRepository($this));
-        $this->setSerializer(new TemplateSerializer($this));
-        $this->setValidator(new TemplateValidator($this));
-        $this->setAuthorizer(new TemplateAuthorizer($this));
+        $this->entity = Config::get('ore.template.entity');
+        $this->attributes = array_merge($this->attributes, array_values(Config::get('ore.template.attributes')));
+        
+        $classRepository = Config::get('ore.template.repository');
+        $this->setRepository(new $classRepository($this));
+
+        $classSerializer = Config::get('ore.template.serializer');
+        $this->setSerializer(new $classSerializer($this));
+
+        $classAuthorizer = Config::get('ore.template.authorizer');
+        $this->setAuthorizer(new $classAuthorizer($this));
+
+        $classValidator = Config::get('ore.template.validator');
+        $this->setValidator(new $classValidator($this));
 
         parent::__construct($agent);
     }
