@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 use Railken\Laravel\Manager\Contracts\EntityContract;
 
+/**
+ * @property public $name
+ * @property public $description
+ * @property public $filename
+ * @property public $filetype
+ * @property public $content
+ * @property public $mock_data
+ */
 class Template extends Model implements EntityContract
 {
     /**

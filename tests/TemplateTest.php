@@ -13,7 +13,7 @@ class TemplateTest extends BaseTest
     /**
      * Retrieve basic url.
      *
-     * @return \Railken\Laravel\Manager\Contracts\ManagerContract
+     * @return \Railken\LaraOre\Template\TemplateManager
      */
     public function getManager()
     {
