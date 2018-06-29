@@ -9,6 +9,7 @@
         "barryvdh/laravel-dompdf": "^0.8.2",
         "rcrowe/twigbridge": "^0.9.6",
         "mewesk/twig-excel-bundle": "^2.1",
+        "fzaninotto/faker": "^1.7",
         "railken/lara-ore-api": "dev-master",
         "railken/lara-ore-support": "dev-master"
     },

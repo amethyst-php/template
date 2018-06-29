@@ -4,6 +4,7 @@ namespace Railken\LaraOre\Template\Tests;
 
 use Railken\LaraOre\Support\Testing\ManagerTestableTrait;
 use Railken\LaraOre\Template\TemplateManager;
+use Railken\LaraOre\Template\TemplateFaker;
 use Spatie\PdfToText\Pdf;
 
 class TemplateTest extends BaseTest
@@ -27,12 +28,12 @@ class TemplateTest extends BaseTest
 
     public function testSuccessCommon()
     {
-        $this->commonTest($this->getManager(), $this->getParameters());
+        $this->commonTest($this->getManager(), TemplateFaker::make());
     }
 
     public function testPdfRender()
     {
-        $parameters = $this->getParameters()
+        $parameters = TemplateFaker::make()
             ->set('filetype', 'application/pdf')
             ->set('content', 'The cake is a {{ message }}')
             ->set('mock_data', ['message' => 'lie']);
@@ -53,7 +54,7 @@ class TemplateTest extends BaseTest
 
     public function testHtmlRender()
     {
-        $parameters = $this->getParameters()
+        $parameters = TemplateFaker::make()
             ->set('filetype', 'text/html')
             ->set('content', 'The cake is a <b>{{ message }}</b>')
             ->set('mock_data', ['message' => 'lie']);
@@ -66,7 +67,7 @@ class TemplateTest extends BaseTest
 
     public function testExcelRender()
     {
-        $parameters = $this->getParameters()
+        $parameters = TemplateFaker::make()
             ->set('filetype', 'application/xls')
             ->set('content', '{% xlsdocument %}
                 {% xlssheet %}
