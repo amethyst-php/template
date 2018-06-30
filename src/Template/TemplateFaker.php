@@ -8,7 +8,7 @@ use Faker\Factory;
 class TemplateFaker
 {
     /**
-     * @return array
+     * @return Bag
      */
     public static function make()
     {
