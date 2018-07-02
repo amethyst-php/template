@@ -19,7 +19,7 @@ class BaseGenerator implements GeneratorContract
 
         $path = config('view.paths.0');
 
-        $view = 'cache/'.$name.'-'.hash('sha1', $name);
+        $view = 'cache/'.$name;
 
         $filename = $path.'/'.$view.'.twig';
 
@@ -37,6 +37,11 @@ class BaseGenerator implements GeneratorContract
      */
     public function getRandomName()
     {
-        return 'tmp-'.sha1(microtime(true));
+        return 'tmp-'.sha1(str_random(20));
+    }
+
+    public function remove(string $filename)
+    {
+        unlink($filename);
     }
 }

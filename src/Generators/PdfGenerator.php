@@ -17,6 +17,10 @@ class PdfGenerator extends BaseGenerator
         $dompdf->loadHtml($html);
         $dompdf->render();
 
-        return $dompdf->output();
+        $rendered = $dompdf->output();
+
+        $this->remove($filename);
+
+        return $rendered;
     }
 }

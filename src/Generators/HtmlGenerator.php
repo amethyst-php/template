@@ -10,6 +10,10 @@ class HtmlGenerator extends BaseGenerator
     {
         $filename = $this->generateViewFile($content);
 
-        return Twig::render($filename, $data);
+        $rendered = Twig::render($filename, $data);
+
+        $this->remove($filename);
+
+        return $rendered;
     }
 }
