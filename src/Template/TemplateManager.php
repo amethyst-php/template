@@ -72,7 +72,7 @@ class TemplateManager extends ModelManager
      *
      * @param string $filetype
      *
-     * @return \Railken\LaraOre\Template\Generators\GeneratorContract
+     * @return \Railken\LaraOre\Generators\GeneratorContract
      */
     public function getGeneratorOrFail(string $filetype)
     {

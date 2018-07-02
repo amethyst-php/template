@@ -1,6 +1,6 @@
 <?php
 
-namespace Railken\LaraOre\Template\Generators;
+namespace Railken\LaraOre\Generators;
 
 use MewesK\TwigExcelBundle\Twig\TwigExcelExtension;
 use Twig;

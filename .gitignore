@@ -1,7 +1,6 @@
 vendor/
 var/cache
 \.php_cs\.cache
-
 \.env
-build/
 composer\.lock
+build/
