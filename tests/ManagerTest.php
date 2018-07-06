@@ -28,12 +28,12 @@ class ManagerTest extends BaseTest
 
     public function testSuccessCommon()
     {
-        $this->commonTest($this->getManager(), TemplateFaker::make());
+        $this->commonTest($this->getManager(), TemplateFaker::make()->parameters());
     }
 
     public function testPdfRender()
     {
-        $parameters = TemplateFaker::make()
+        $parameters = TemplateFaker::make()->parameters()
             ->set('filetype', 'application/pdf')
             ->set('content', 'The cake is a {{ message }}')
             ->set('mock_data', ['message' => 'lie']);
@@ -54,7 +54,7 @@ class ManagerTest extends BaseTest
 
     public function testHtmlRender()
     {
-        $parameters = TemplateFaker::make()
+        $parameters = TemplateFaker::make()->parameters()
             ->set('filetype', 'text/html')
             ->set('content', 'The cake is a <b>{{ message }}</b>')
             ->set('mock_data', ['message' => 'lie']);
@@ -67,7 +67,7 @@ class ManagerTest extends BaseTest
 
     public function testExcelRender()
     {
-        $parameters = TemplateFaker::make()
+        $parameters = TemplateFaker::make()->parameters()
             ->set('filetype', 'application/xls')
             ->set('content', '{% xlsdocument %}
                 {% xlssheet %}

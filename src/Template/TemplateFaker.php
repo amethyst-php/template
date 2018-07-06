@@ -4,13 +4,19 @@ namespace Railken\LaraOre\Template;
 
 use Railken\Bag;
 use Faker\Factory;
+use Railken\Laravel\Manager\BaseFaker;
 
-class TemplateFaker
+class TemplateFaker extends BaseFaker
 {
     /**
-     * @return Bag
+     * @var string
      */
-    public static function make()
+    protected $manager = TemplateManager::class;
+
+    /**
+     * @return \Railken\Bag
+     */
+    public function parameters()
     {
         $faker = Factory::create();
         
