@@ -7,7 +7,7 @@ use Railken\LaraOre\Template\TemplateManager;
 use Railken\LaraOre\Template\TemplateFaker;
 use Spatie\PdfToText\Pdf;
 
-class TemplateTest extends BaseTest
+class ManagerTest extends BaseTest
 {
     use ManagerTestableTrait;
 

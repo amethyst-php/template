@@ -128,4 +128,33 @@ class TemplateManager extends ModelManager
     {
         return $this->render($template, $template->mock_data);
     }
+
+    /**
+     * Parse scheme
+     *
+     * @param array $scheme
+     *
+     * @return array
+     */
+    public function convertSchemeIntoMockData(array $scheme)
+    {
+        $data = [];
+        $faker = \Faker\Factory::create();
+
+        foreach ($scheme as $name => $record) {
+            if (class_exists($record)) {
+                $value = $record::make();
+            } else {
+                try {
+                    $value = $faker->{$record};
+                } catch (\Exception $e) {
+                    $value = $record;
+                }
+            }
+
+            $data[$name] = $value;
+        }
+
+        return $data;
+    }
 }

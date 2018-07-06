@@ -62,7 +62,15 @@ class TemplatesController extends RestConfigurableController
      */
     public function render(Request $request)
     {
-        $content = (new TemplateManager())->renderRaw(strval($request->input('filetype')), strval($request->input('content')), (array)$request->input('data'));
+        $manager = new TemplateManager();
+
+        try {
+            $data = $manager->convertSchemeIntoMockData((array)$request->input('data'));
+        } catch (\Exception $e) {
+            return $this->error(['errors' => ['message' => 'Error data']]);
+        }
+
+        $content = $manager->renderRaw(strval($request->input('filetype')), strval($request->input('content')), $data);
         
         return $this->success(['resource' => base64_encode($content)]);
     }

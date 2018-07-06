@@ -20,7 +20,7 @@ class TemplateFaker
         $bag->set('filetype', 'application/pdf');
         $bag->set('description', 'A description');
         $bag->set('content', 'The cake is a {{ message }}');
-        $bag->set('mock_data', ['message' => 'lie']);
+        $bag->set('mock_data', ['message' => 'text']);
 
         return $bag;
     }
