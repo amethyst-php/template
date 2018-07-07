@@ -114,7 +114,7 @@ class TemplateManager extends ModelManager
         $generator = $this->getGeneratorOrFail($filetype);
         $generator = new $generator();
 
-        return $generator->render($content, $data);
+        return $generator->render($content, $this->convertSchemeIntoMockData($data));
     }
 
     /**
@@ -130,18 +130,18 @@ class TemplateManager extends ModelManager
     }
 
     /**
-     * Parse scheme
+     * Parse schema
      *
-     * @param array $scheme
+     * @param array $schema
      *
      * @return array
      */
-    public function convertSchemeIntoMockData(array $scheme)
+    public function convertSchemeIntoMockData(array $schema)
     {
         $data = [];
         $faker = \Faker\Factory::create();
 
-        foreach ($scheme as $name => $record) {
+        foreach ($schema as $name => $record) {
             if (class_exists($record)) {
                 $value = $record::make();
             } else {
