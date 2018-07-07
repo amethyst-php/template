@@ -142,14 +142,23 @@ class TemplateManager extends ModelManager
         $faker = \Faker\Factory::create();
 
         foreach ($schema as $name => $record) {
-            if (class_exists($record)) {
-                $value = $record::make();
-            } else {
+
+            if (is_array($record) || is_object($record)) {
+                $value = $record;
+            }
+
+            if (is_string($record)) {
+
                 try {
                     $value = $faker->{$record};
                 } catch (\Exception $e) {
                     $value = $record;
                 }
+
+                if (class_exists($record)) {
+                    $value = $record::make()->entity();
+                } 
+
             }
 
             $data[$name] = $value;
