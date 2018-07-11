@@ -2,10 +2,10 @@
 
 namespace Railken\LaraOre\Template;
 
+use Illuminate\Support\Facades\Config;
 use Railken\Laravel\Manager\Contracts\AgentContract;
 use Railken\Laravel\Manager\ModelManager;
 use Railken\Laravel\Manager\Tokens;
-use Illuminate\Support\Facades\Config;
 
 class TemplateManager extends ModelManager
 {
@@ -51,7 +51,7 @@ class TemplateManager extends ModelManager
     {
         $this->entity = Config::get('ore.template.entity');
         $this->attributes = array_merge($this->attributes, array_values(Config::get('ore.template.attributes')));
-        
+
         $classRepository = Config::get('ore.template.repository');
         $this->setRepository(new $classRepository($this));
 
@@ -130,7 +130,7 @@ class TemplateManager extends ModelManager
     }
 
     /**
-     * Parse schema
+     * Parse schema.
      *
      * @param array $schema
      *
@@ -142,13 +142,11 @@ class TemplateManager extends ModelManager
         $faker = \Faker\Factory::create();
 
         foreach ($schema as $name => $record) {
-
             if (is_array($record) || is_object($record)) {
                 $value = $record;
             }
 
             if (is_string($record)) {
-
                 try {
                     $value = $faker->{$record};
                 } catch (\Exception $e) {
@@ -157,8 +155,7 @@ class TemplateManager extends ModelManager
 
                 if (class_exists($record)) {
                     $value = $record::make()->entity();
-                } 
-
+                }
             }
 
             $data[$name] = $value;

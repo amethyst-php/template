@@ -25,8 +25,6 @@ class TemplateServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
     public function boot(\Illuminate\Routing\Router $router)
     {
@@ -44,8 +42,6 @@ class TemplateServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -59,8 +55,6 @@ class TemplateServiceProvider extends ServiceProvider
 
     /**
      * Load routes.
-     *
-     * @return void
      */
     public function loadRoutes()
     {

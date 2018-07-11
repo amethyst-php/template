@@ -65,6 +65,7 @@ class ManagerTest extends BaseTest
         $this->assertEquals('The cake is a <b>lie</b>', $rendered);
     }
 
+
     public function testExcelRender()
     {
         $parameters = TemplateFaker::make()->parameters()

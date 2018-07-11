@@ -2,8 +2,6 @@
 
 namespace Railken\LaraOre\Generators;
 
-use Twig;
-
 class BaseGenerator implements GeneratorContract
 {
     /**

@@ -2,10 +2,10 @@
 
 namespace Railken\LaraOre\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Railken\LaraOre\Api\Http\Controllers\RestConfigurableController;
 use Railken\LaraOre\Api\Http\Controllers\Traits as RestTraits;
 use Railken\LaraOre\Template\TemplateManager;
-use Illuminate\Http\Request;
 
 class TemplatesController extends RestConfigurableController
 {
@@ -16,7 +16,7 @@ class TemplatesController extends RestConfigurableController
     use RestTraits\RestRemoveTrait;
 
     /**
-     * The config path
+     * The config path.
      *
      * @var string
      */
@@ -54,7 +54,7 @@ class TemplatesController extends RestConfigurableController
     ];
 
     /**
-     * Render raw template
+     * Render raw template.
      *
      * @param \Illuminate\Http\Request $request
      *

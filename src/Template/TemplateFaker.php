@@ -2,8 +2,8 @@
 
 namespace Railken\LaraOre\Template;
 
-use Railken\Bag;
 use Faker\Factory;
+use Railken\Bag;
 use Railken\Laravel\Manager\BaseFaker;
 
 class TemplateFaker extends BaseFaker
@@ -19,7 +19,7 @@ class TemplateFaker extends BaseFaker
     public function parameters()
     {
         $faker = Factory::create();
-        
+
         $bag = new Bag();
         $bag->set('name', 'a common name'.microtime());
         $bag->set('filename', 'test.pdf');

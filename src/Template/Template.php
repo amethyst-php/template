@@ -12,7 +12,7 @@ use Railken\Laravel\Manager\Contracts\EntityContract;
  * @property string $filename
  * @property string $filetype
  * @property string $content
- * @property array $mock_data
+ * @property array  $mock_data
  */
 class Template extends Model implements EntityContract
 {
