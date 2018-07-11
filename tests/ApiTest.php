@@ -48,4 +48,21 @@ class ApiTest extends BaseTest
 
         $this->assertEquals(base64_decode($body->resource), "Hello dear");
     }
+
+    public function testRenderError()
+    {
+        $response = $this->post($this->getBaseUrl() . "/render", [
+            'filetype' => 'text/plain',
+            'content' => 'Hello {{ message',
+            'data' => [
+                'message' => 'dear'
+            ],
+        ]);
+
+        $this->assertOrPrint($response, 400);
+        $body = json_decode($response->getContent());
+
+
+        $this->assertEquals('SYNTAX_ERROR', $body->errors[0]->code);
+    }
 }

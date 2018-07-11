@@ -64,8 +64,12 @@ class TemplatesController extends RestConfigurableController
     {
         $manager = new TemplateManager();
 
-        $content = $manager->renderRaw(strval($request->input('filetype')), strval($request->input('content')), (array)$request->input('data'));
-        
+        try {
+            $content = $manager->renderRaw(strval($request->input('filetype')), strval($request->input('content')), (array) $request->input('data'));
+        } catch (\Twig_Error_Syntax $e) {
+            return $this->error(['errors' => [['code' => 'SYNTAX_ERROR', 'message' => sprintf('%s at line %s', $e->getRawMessage(), $e->getTemplateLine())]]]);
+        }
+
         return $this->success(['resource' => base64_encode($content)]);
     }
 }
