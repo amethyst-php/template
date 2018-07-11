@@ -1,6 +1,6 @@
 # lara-ore-template
 
-[![Build Status](https://img.shields.io/travis/railken/lara-ore-template/master.svg?style=flat-square)](https://travis-ci.org/railken/lara-ore-template)
+[![Build Status](https://travis-ci.org/railken/lara-ore-template.svg?branch=master)](https://travis-ci.org/railken/lara-ore-template)
 
 This is a [lara-ore](https://github.com/railken/lara-ore) package
 
