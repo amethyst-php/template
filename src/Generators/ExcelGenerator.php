@@ -20,7 +20,7 @@ class ExcelGenerator extends BaseGenerator
      * Render a file.
      *
      * @param string $filename
-     * @param array $data
+     * @param array  $data
      *
      * @return string
      */

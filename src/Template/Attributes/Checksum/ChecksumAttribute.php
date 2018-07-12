@@ -2,12 +2,11 @@
 
 namespace Railken\LaraOre\Template\Attributes\Checksum;
 
+use Illuminate\Support\Collection;
+use Railken\Bag;
 use Railken\Laravel\Manager\Attributes\BaseAttribute;
 use Railken\Laravel\Manager\Contracts\EntityContract;
 use Railken\Laravel\Manager\Tokens;
-use Illuminate\Support\Collection;
-use Respect\Validation\Validator as v;
-use Railken\Bag;
 
 class ChecksumAttribute extends BaseAttribute
 {
@@ -53,18 +52,21 @@ class ChecksumAttribute extends BaseAttribute
         Tokens::PERMISSION_SHOW => 'template.attributes.checksum.show',
     ];
 
-
     /**
      * Update entity value.
      *
-     * @param \Railken\Laravel\Manager\Contracts\EntityContract $entity
-     * @param \Railken\Bag $parameters
+     * @param \Railken\LaraOre\Template\Template $entity
+     * @param \Railken\Bag                       $parameters
      *
      * @return Collection
      */
     public function update(EntityContract $entity, Bag $parameters)
-    {
-        $entity->checksum = $this->getManager()->checksum($entity->content);
+    {   
+        /** @var \Railken\LaraOre\Template\TemplateManager */
+        $manager = $this->getManager();
+
+        $entity->checksum = $manager->checksum($entity->content);
+
         return new Collection();
     }
 }

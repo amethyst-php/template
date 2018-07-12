@@ -2,8 +2,6 @@
 
 namespace Railken\LaraOre\Generators;
 
-use Twig;
-
 class TextGenerator extends BaseGenerator
 {
     /**

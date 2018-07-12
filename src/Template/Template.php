@@ -13,6 +13,7 @@ use Railken\Laravel\Manager\Contracts\EntityContract;
  * @property string $filetype
  * @property string $content
  * @property array  $mock_data
+ * @property string $checksum
  */
 class Template extends Model implements EntityContract
 {
@@ -67,6 +68,6 @@ class Template extends Model implements EntityContract
     {
         $m = new TemplateManager();
 
-        return $m->getPathTemplates() . "/" . $this->filename . ".twig";
+        return $m->getPathTemplates().'/'.$this->filename.'.twig';
     }
 }

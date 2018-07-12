@@ -4,7 +4,6 @@ namespace Railken\LaraOre\Template;
 
 use Illuminate\Support\Facades\Config;
 use Railken\Laravel\Manager\Contracts\AgentContract;
-use Railken\Laravel\Manager\Contracts\EntityContract;
 use Railken\Laravel\Manager\ModelManager;
 use Railken\Laravel\Manager\Tokens;
 
@@ -167,35 +166,35 @@ class TemplateManager extends ModelManager
     }
 
     /**
-     * Retrieve path templates
+     * Retrieve path templates.
      *
      * @return string
      */
     public function getPathTemplates()
     {
-        return storage_path() . Config::get('ore.template.views');
+        return storage_path().Config::get('ore.template.views');
     }
 
     /**
-     * Calculate checksum by path file
+     * Calculate checksum by path file.
      *
      * @param string $path
      *
-     * @return string
+     * @return string|null
      */
     public function checksumByPath(string $path)
     {
-        return file_exists($path) ? $this->checksum(file_get_contents($path)) : null;
+        return file_exists($path) ? $this->checksum((string) file_get_contents($path)) : null;
     }
 
     /**
-     * Calculate checksum by content file
+     * Calculate checksum by content file.
      *
      * @param string $content
      *
      * @return string
      */
-    public function checksum($content)
+    public function checksum(string $content)
     {
         return sha1($content);
     }
@@ -213,7 +212,7 @@ class TemplateManager extends ModelManager
 
         $templates = $this->getRepository()->newQuery()->get();
 
-        $files = collect(glob($path."/*"));
+        $files = collect(glob($path.'/*'));
 
         foreach ($templates as $template) {
             if ($this->checksumByPath($template->getPath()) !== $template->checksum) {

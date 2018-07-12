@@ -7,14 +7,13 @@ use Twig;
 
 class BaseGenerator implements GeneratorContract
 {
-
     /**
      * Construct.
      */
     public function __construct()
     {
     }
-    
+
     /**
      * Generate a view file.
      *
@@ -26,7 +25,7 @@ class BaseGenerator implements GeneratorContract
     {
         $name = $this->getRandomName();
 
-        $path = storage_path() . Config::get('ore.template.cache');
+        $path = storage_path().Config::get('ore.template.cache');
 
         $filename = $path.'/'.$name.'.twig';
 
@@ -46,11 +45,11 @@ class BaseGenerator implements GeneratorContract
      */
     public function getRandomName()
     {
-        return sha1(microtime() . str_random(20));
+        return sha1(microtime().str_random(20));
     }
 
     /**
-     * Remove a file
+     * Remove a file.
      *
      * @param string $filename
      */
@@ -63,7 +62,7 @@ class BaseGenerator implements GeneratorContract
      * Render a file.
      *
      * @param string $filename
-     * @param array $data
+     * @param array  $data
      *
      * @return string
      */
@@ -73,10 +72,10 @@ class BaseGenerator implements GeneratorContract
     }
 
     /**
-     * Generate a file and renderd it
+     * Generate a file and renderd it.
      *
      * @param string $content
-     * @param array $data
+     * @param array  $data
      *
      * @return string
      */

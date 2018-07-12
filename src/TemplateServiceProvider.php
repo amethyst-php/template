@@ -4,9 +4,9 @@ namespace Railken\LaraOre;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Railken\LaraOre\Api\Support\Router;
-use Illuminate\Support\Facades\Schema;
 
 class TemplateServiceProvider extends ServiceProvider
 {
