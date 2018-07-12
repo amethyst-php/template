@@ -6,16 +6,13 @@ use Twig;
 
 class TextGenerator extends BaseGenerator
 {
-    public function render($content, $data)
+    public function generateViewFile($content)
     {
-        $content = strip_tags($content);
+        return parent::generateViewFile(strip_tags($content));
+    }
 
-        $filename = $this->generateViewFile($content);
-
-        $rendered = Twig::render($filename, $data);
-
-        $this->remove($filename);
-
-        return $rendered;
+    public function render($filename, $data)
+    {
+        return Twig::render($filename, $data);
     }
 }

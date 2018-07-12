@@ -6,14 +6,8 @@ use Twig;
 
 class HtmlGenerator extends BaseGenerator
 {
-    public function render($content, $data)
+    public function render($filename, $data)
     {
-        $filename = $this->generateViewFile($content);
-
-        $rendered = Twig::render($filename, $data);
-
-        $this->remove($filename);
-
-        return $rendered;
+        return Twig::render($filename, $data);
     }
 }

@@ -22,6 +22,7 @@ class CreateTemplatesTable extends Migration
             $table->text('description')->nullable();
             $table->text('mock_data');
             $table->longtext('content');
+            $table->string('checksum', 40);
             $table->timestamps();
         });
     }

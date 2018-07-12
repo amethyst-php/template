@@ -35,6 +35,8 @@ class TemplateServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadRoutes();
 
+        $this->loadViews();
+
         config(['ore.permission.managers' => array_merge(Config::get('ore.permission.managers', []), [
             \Railken\LaraOre\Template\TemplateManager::class,
         ])]);
@@ -68,5 +70,17 @@ class TemplateServiceProvider extends ServiceProvider
             $router->delete('/{id}', ['uses' => 'TemplatesController@remove']);
             $router->get('/{id}', ['uses' => 'TemplatesController@show']);
         });
+    }
+
+    /**
+     * Load views.
+     */
+    public function loadViews()
+    {
+        $m = new \Railken\LaraOre\Template\TemplateManager();
+        $path = $m->getPathTemplates();
+        $m->loadViews();
+
+        $this->loadViewsFrom($path, 'ore');
     }
 }

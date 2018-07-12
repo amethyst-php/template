@@ -60,6 +60,6 @@ class MockDataAttribute extends BaseAttribute
      */
     public function valid(EntityContract $entity, $value)
     {
-        return v::length(1, 255)->validate($value);
+        return true;
     }
 }

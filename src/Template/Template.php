@@ -35,6 +35,8 @@ class Template extends Model implements EntityContract
         'filetype',
         'content',
         'mock_data',
+        'hash',
+        'checksum',
     ];
 
     /**
@@ -56,5 +58,15 @@ class Template extends Model implements EntityContract
         parent::__construct($attributes);
         $this->table = \Illuminate\Support\Facades\Config::get('ore.template.table');
         $this->fillable = array_merge($this->fillable, array_keys(Config::get('ore.template.attributes')));
+    }
+
+    /**
+     * @return string
+     */
+    public function getPath()
+    {
+        $m = new TemplateManager();
+
+        return $m->getPathTemplates() . "/" . $this->filename . ".twig";
     }
 }

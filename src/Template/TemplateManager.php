@@ -4,6 +4,7 @@ namespace Railken\LaraOre\Template;
 
 use Illuminate\Support\Facades\Config;
 use Railken\Laravel\Manager\Contracts\AgentContract;
+use Railken\Laravel\Manager\Contracts\EntityContract;
 use Railken\Laravel\Manager\ModelManager;
 use Railken\Laravel\Manager\Tokens;
 
@@ -31,6 +32,7 @@ class TemplateManager extends ModelManager
         Attributes\Description\DescriptionAttribute::class,
         Attributes\MockData\MockDataAttribute::class,
         Attributes\Content\ContentAttribute::class,
+        Attributes\Checksum\ChecksumAttribute::class,
     ];
 
     /**
@@ -114,7 +116,7 @@ class TemplateManager extends ModelManager
         $generator = $this->getGeneratorOrFail($filetype);
         $generator = new $generator();
 
-        return $generator->render($content, $this->convertSchemeIntoMockData($data));
+        return $generator->generateAndRender($content, $this->convertSchemeIntoMockData($data));
     }
 
     /**
@@ -162,5 +164,52 @@ class TemplateManager extends ModelManager
         }
 
         return $data;
+    }
+
+    /**
+     * Retrieve path templates
+     *
+     * @return string
+     */
+    public function getPathTemplates()
+    {
+        return storage_path() . Config::get('ore.template.views');
+    }
+
+    public function checksumByPath(string $path)
+    {
+        return file_exists($path) ? $this->checksum(file_get_contents($path)) : null;
+    }
+
+    public function checksum($content)
+    {
+        return sha1($content);
+    }
+
+    public function loadViews()
+    {
+        $path = $this->getPathTemplates();
+
+        if (!file_exists($path)) {
+            mkdir($path, 0775, true);
+        }
+
+        $templates = $this->getRepository()->newQuery()->get();
+
+        $files = collect(glob($path."/*"));
+
+        foreach ($templates as $template) {
+            if ($this->checksumByPath($template->getPath()) !== $template->checksum) {
+                file_put_contents($template->getPath(), $template->content);
+            }
+
+            $files->splice($files->search(function ($file) use ($template) {
+                return basename($file) === basename($template->getPath());
+            }), 1);
+        }
+
+        $files->map(function ($file) {
+            unlink($file);
+        });
     }
 }

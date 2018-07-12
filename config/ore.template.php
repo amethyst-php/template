@@ -136,5 +136,25 @@ return [
         'text/plain'      => "Railken\LaraOre\Generators\TextGenerator",
         'application/xls' => "Railken\LaraOre\Generators\ExcelGenerator",
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Views folder
+    |--------------------------------------------------------------------------
+    |
+    | The folder where the view templates will be saved
+    |
+    */
+    'views' => '/lara-ore-template/views',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cache folder
+    |--------------------------------------------------------------------------
+    |
+    | The cache folder
+    |
+    */
+    'cache' => '/lara-ore-template/cache',
 ];
 ?>
