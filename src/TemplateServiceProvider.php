@@ -6,6 +6,7 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Railken\LaraOre\Api\Support\Router;
+use Illuminate\Support\Facades\Schema;
 
 class TemplateServiceProvider extends ServiceProvider
 {
@@ -79,7 +80,10 @@ class TemplateServiceProvider extends ServiceProvider
     {
         $m = new \Railken\LaraOre\Template\TemplateManager();
         $path = $m->getPathTemplates();
-        $m->loadViews();
+
+        if (Schema::hasTable(Config::get('ore.template.table'))) {
+            $m->loadViews();
+        }
 
         $this->loadViewsFrom($path, 'ore');
     }
