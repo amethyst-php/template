@@ -7,6 +7,14 @@ use Twig;
 
 class PdfGenerator extends BaseGenerator
 {
+    /**
+     * Render a file.
+     *
+     * @param string $filename
+     * @param array $data
+     *
+     * @return string
+     */
     public function render($filename, $data)
     {
         $html = Twig::render($filename, $data);

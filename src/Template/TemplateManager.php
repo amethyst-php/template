@@ -176,16 +176,33 @@ class TemplateManager extends ModelManager
         return storage_path() . Config::get('ore.template.views');
     }
 
+    /**
+     * Calculate checksum by path file
+     *
+     * @param string $path
+     *
+     * @return string
+     */
     public function checksumByPath(string $path)
     {
         return file_exists($path) ? $this->checksum(file_get_contents($path)) : null;
     }
 
+    /**
+     * Calculate checksum by content file
+     *
+     * @param string $content
+     *
+     * @return string
+     */
     public function checksum($content)
     {
         return sha1($content);
     }
 
+    /**
+     * Load views.
+     */
     public function loadViews()
     {
         $path = $this->getPathTemplates();

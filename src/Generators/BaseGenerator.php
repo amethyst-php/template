@@ -49,16 +49,37 @@ class BaseGenerator implements GeneratorContract
         return sha1(microtime() . str_random(20));
     }
 
+    /**
+     * Remove a file
+     *
+     * @param string $filename
+     */
     public function remove(string $filename)
     {
         unlink($filename);
     }
 
+    /**
+     * Render a file.
+     *
+     * @param string $filename
+     * @param array $data
+     *
+     * @return string
+     */
     public function render($filename, $data)
     {
         return Twig::render($filename, $data);
     }
 
+    /**
+     * Generate a file and renderd it
+     *
+     * @param string $content
+     * @param array $data
+     *
+     * @return string
+     */
     public function generateAndRender($content, $data)
     {
         $filename = $this->generateViewFile($content);
