@@ -3,6 +3,7 @@
 namespace Railken\LaraOre\Template;
 
 use Illuminate\Support\Facades\Config;
+use Railken\LaraOre\Events\TemplateViewUpdated;
 use Railken\Laravel\Manager\Contracts\AgentContract;
 use Railken\Laravel\Manager\ModelManager;
 use Railken\Laravel\Manager\Tokens;
@@ -214,9 +215,12 @@ class TemplateManager extends ModelManager
 
         $files = collect(glob($path.'/*'));
 
+        $updated = false;
+
         foreach ($templates as $template) {
             if ($this->checksumByPath($template->getPath()) !== $template->checksum) {
                 file_put_contents($template->getPath(), $template->content);
+                $updated = true;
             }
 
             $files->splice($files->search(function ($file) use ($template) {
@@ -226,6 +230,9 @@ class TemplateManager extends ModelManager
 
         $files->map(function ($file) {
             unlink($file);
+            $updated = true;
         });
+
+        event(new TemplateViewUpdated());
     }
 }
