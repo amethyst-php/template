@@ -61,7 +61,7 @@ class ChecksumAttribute extends BaseAttribute
      * @return Collection
      */
     public function update(EntityContract $entity, Bag $parameters)
-    {   
+    {
         /** @var \Railken\LaraOre\Template\TemplateManager */
         $manager = $this->getManager();
 
