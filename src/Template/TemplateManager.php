@@ -233,6 +233,8 @@ class TemplateManager extends ModelManager
             $updated = true;
         });
 
-        event(new TemplateViewUpdated());
+        if ($updated) {
+            event(new TemplateViewUpdated());
+        }
     }
 }
