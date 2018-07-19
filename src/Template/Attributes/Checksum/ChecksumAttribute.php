@@ -65,7 +65,9 @@ class ChecksumAttribute extends BaseAttribute
         /** @var \Railken\LaraOre\Template\TemplateManager */
         $manager = $this->getManager();
 
-        $entity->checksum = $manager->checksum($entity->content);
+        if (!empty($entity->content)) {
+            $entity->checksum = $manager->checksum($entity->content);
+        }
 
         return new Collection();
     }
