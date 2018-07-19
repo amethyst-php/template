@@ -48,7 +48,7 @@ class MockDataAttribute extends BaseAttribute
         Tokens::PERMISSION_FILL => 'template.attributes.mock_data.fill',
         Tokens::PERMISSION_SHOW => 'template.attributes.mock_data.show',
     ];
-
+    
     /**
      * Is a value valid ?
      *
@@ -60,5 +60,17 @@ class MockDataAttribute extends BaseAttribute
     public function valid(EntityContract $entity, $value)
     {
         return true;
+    }
+
+    /**
+     * Retrieve default value.
+     *
+     * @param \Railken\Laravel\Manager\Contracts\EntityContract $entity
+     *
+     * @return mixed
+     */
+    public function getDefault(EntityContract $entity)
+    {
+        return (object) [];
     }
 }
