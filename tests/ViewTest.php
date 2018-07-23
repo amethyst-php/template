@@ -3,9 +3,8 @@
 namespace Railken\LaraOre\Template\Tests;
 
 use Railken\LaraOre\Support\Testing\ManagerTestableTrait;
-use Railken\LaraOre\Template\TemplateManager;
 use Railken\LaraOre\Template\TemplateFaker;
-use Spatie\PdfToText\Pdf;
+use Railken\LaraOre\Template\TemplateManager;
 
 class ViewTest extends BaseTest
 {
@@ -49,9 +48,7 @@ class ViewTest extends BaseTest
         $this->assertEquals(true, $result->ok());
         $resource = $result->getResource();
 
-
         $rendered = $this->getManager()->renderMock($resource);
-
 
         $this->assertEquals('The following is a block: lie', $rendered);
     }

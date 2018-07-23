@@ -17,51 +17,45 @@ class ApiTest extends BaseTest
      */
     public function getBaseUrl()
     {
-        return Config::get('ore.api.router.prefix').Config::get('ore.template.http.router.prefix');
+        return Config::get('ore.api.router.prefix').Config::get('ore.template.http.admin.router.prefix');
     }
 
     /**
      * Test common requests.
-     *
-     * @return void
      */
     public function testSuccessCommon()
     {
         $this->commonTest($this->getBaseUrl(), TemplateFaker::make()->parameters());
     }
 
-    /**
-     * @return void
-     */
     public function testRender()
     {
-        $response = $this->post($this->getBaseUrl() . "/render", [
+        $response = $this->post($this->getBaseUrl().'/render', [
             'filetype' => 'text/plain',
-            'content' => 'Hello {{ message }}',
-            'data' => [
-                'message' => 'dear'
+            'content'  => 'Hello {{ message }}',
+            'data'     => [
+                'message' => 'dear',
             ],
         ]);
 
         $this->assertOrPrint($response, 200);
         $body = json_decode($response->getContent());
 
-        $this->assertEquals(base64_decode($body->resource), "Hello dear");
+        $this->assertEquals(base64_decode($body->resource), 'Hello dear');
     }
 
     public function testRenderError()
     {
-        $response = $this->post($this->getBaseUrl() . "/render", [
+        $response = $this->post($this->getBaseUrl().'/render', [
             'filetype' => 'text/plain',
-            'content' => 'Hello {{ message',
-            'data' => [
-                'message' => 'dear'
+            'content'  => 'Hello {{ message',
+            'data'     => [
+                'message' => 'dear',
             ],
         ]);
 
         $this->assertOrPrint($response, 400);
         $body = json_decode($response->getContent());
-
 
         $this->assertEquals('SYNTAX_ERROR', $body->errors[0]->code);
     }

@@ -3,8 +3,8 @@
 namespace Railken\LaraOre\Template\Tests;
 
 use Railken\LaraOre\Support\Testing\ManagerTestableTrait;
-use Railken\LaraOre\Template\TemplateManager;
 use Railken\LaraOre\Template\TemplateFaker;
+use Railken\LaraOre\Template\TemplateManager;
 use Spatie\PdfToText\Pdf;
 
 class ManagerTest extends BaseTest
@@ -64,7 +64,6 @@ class ManagerTest extends BaseTest
 
         $this->assertEquals('The cake is a <b>lie</b>', $rendered);
     }
-
 
     public function testExcelRender()
     {

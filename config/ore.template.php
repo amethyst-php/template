@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Table Name
@@ -93,34 +92,25 @@ return [
     |
     */
     'attributes' => [
-
     ],
 
+        /*
+    |--------------------------------------------------------------------------
+    | Http configuration
+    |--------------------------------------------------------------------------
+    |
+    | Here you may configure the routes
+    |
+    */
     'http' => [
-
-        /*
-        |--------------------------------------------------------------------------
-        | Class name controller
-        |--------------------------------------------------------------------------
-        |
-        | Here you may define the controller that will handle all the requests
-        |
-        */
-        'controller' => Railken\LaraOre\Http\Controllers\Admin\TemplatesController::class,
-        
-        /*
-        |--------------------------------------------------------------------------
-        | Router Options
-        |--------------------------------------------------------------------------
-        |
-        | Here you may define all the options that will be used by the route group
-        |
-        */
-        'router' => [
-            'prefix'      => '/admin/templates',
+        'admin' => [
+            'enabled'    => true,
+            'controller' => Railken\LaraOre\Http\Controllers\Admin\TemplatesController::class,
+            'router'     => [
+                'prefix'      => '/admin/templates',
+            ],
         ],
     ],
-
 
     /*
     |--------------------------------------------------------------------------
@@ -157,4 +147,3 @@ return [
     */
     'cache' => '/lara-ore-template/cache',
 ];
-?>

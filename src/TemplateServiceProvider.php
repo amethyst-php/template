@@ -3,6 +3,7 @@
 namespace Railken\LaraOre;
 
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -61,16 +62,20 @@ class TemplateServiceProvider extends ServiceProvider
      */
     public function loadRoutes()
     {
-        Router::group(array_merge(Config::get('ore.template.http.router'), [
-            'namespace' => 'Railken\LaraOre\Http\Controllers',
-        ]), function ($router) {
-            $router->post('/render', ['uses' => 'TemplatesController@render']);
-            $router->get('/', ['uses' => 'TemplatesController@index']);
-            $router->post('/', ['uses' => 'TemplatesController@create']);
-            $router->put('/{id}', ['uses' => 'TemplatesController@update']);
-            $router->delete('/{id}', ['uses' => 'TemplatesController@remove']);
-            $router->get('/{id}', ['uses' => 'TemplatesController@show']);
-        });
+        $config = Config::get('ore.template.http.admin');
+
+        if (Arr::get($config, 'enabled')) {
+            Router::group('admin', Arr::get($config, 'router'), function ($router) use ($config) {
+                $controller = Arr::get($config, 'controller');
+
+                $router->post('/render', ['uses' => $controller.'@render']);
+                $router->get('/', ['uses' => $controller.'@index']);
+                $router->post('/', ['uses' => $controller.'@create']);
+                $router->put('/{id}', ['uses' => $controller.'@update']);
+                $router->delete('/{id}', ['uses' => $controller.'@remove']);
+                $router->get('/{id}', ['uses' => $controller.'@show']);
+            });
+        }
     }
 
     /**

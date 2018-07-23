@@ -48,7 +48,7 @@ class MockDataAttribute extends BaseAttribute
         Tokens::PERMISSION_FILL => 'template.attributes.mock_data.fill',
         Tokens::PERMISSION_SHOW => 'template.attributes.mock_data.show',
     ];
-    
+
     /**
      * Is a value valid ?
      *
