@@ -39,7 +39,7 @@ class TemplateServiceProvider extends ServiceProvider
 
         $this->loadViews();
 
-        config(['ore.permission.managers' => array_merge(Config::get('ore.permission.managers', []), [
+        config(['ore.managers' => array_merge(Config::get('ore.managers', []), [
             \Railken\LaraOre\Template\TemplateManager::class,
         ])]);
     }

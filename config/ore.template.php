@@ -107,7 +107,7 @@ return [
             'enabled'    => true,
             'controller' => Railken\LaraOre\Http\Controllers\Admin\TemplatesController::class,
             'router'     => [
-                'prefix'      => '/admin/templates',
+                'prefix'      => '/templates',
             ],
         ],
     ],

@@ -58,7 +58,7 @@ class TemplatesController extends RestConfigurableController
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function render(Request $request)
     {

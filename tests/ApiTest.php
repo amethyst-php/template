@@ -3,58 +3,65 @@
 namespace Railken\LaraOre\Template\Tests;
 
 use Illuminate\Support\Facades\Config;
-use Railken\LaraOre\Support\Testing\ApiTestableTrait;
+use Railken\LaraOre\Api\Support\Testing\TestableBaseTrait;
 use Railken\LaraOre\Template\TemplateFaker;
 
 class ApiTest extends BaseTest
 {
-    use ApiTestableTrait;
+    use TestableBaseTrait;
 
     /**
-     * Retrieve basic url.
+     * Faker class.
      *
-     * @return string
+     * @var string
      */
-    public function getBaseUrl()
-    {
-        return Config::get('ore.api.router.prefix').Config::get('ore.template.http.admin.router.prefix');
-    }
+    protected $faker = TemplateFaker::class;
 
     /**
-     * Test common requests.
+     * Router group resource.
+     *
+     * @var string
      */
-    public function testSuccessCommon()
-    {
-        $this->commonTest($this->getBaseUrl(), TemplateFaker::make()->parameters());
-    }
+    protected $group = 'admin';
 
+    /**
+     * Base path config.
+     *
+     * @var string
+     */
+    protected $config = 'ore.template';
+
+    /**
+     * Test correct render.
+     */
     public function testRender()
     {
-        $response = $this->post($this->getBaseUrl().'/render', [
+        $response = $this->callAndTest('POST', $this->getResourceUrl().'/render', [
             'filetype' => 'text/plain',
             'content'  => 'Hello {{ message }}',
             'data'     => [
                 'message' => 'dear',
             ],
-        ]);
+        ], 200);
 
-        $this->assertOrPrint($response, 200);
         $body = json_decode($response->getContent());
 
         $this->assertEquals(base64_decode($body->resource), 'Hello dear');
     }
 
+    /**
+     * Test wrong render.
+     */
     public function testRenderError()
     {
-        $response = $this->post($this->getBaseUrl().'/render', [
+        $response = $this->callAndTest('POST', $this->getResourceUrl().'/render', [
             'filetype' => 'text/plain',
             'content'  => 'Hello {{ message',
             'data'     => [
                 'message' => 'dear',
             ],
-        ]);
+        ], 400);
 
-        $this->assertOrPrint($response, 400);
         $body = json_decode($response->getContent());
 
         $this->assertEquals('SYNTAX_ERROR', $body->errors[0]->code);
