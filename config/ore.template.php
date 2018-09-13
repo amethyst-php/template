@@ -121,10 +121,10 @@ return [
     |
     */
     'generators' => [
-        'application/pdf' => "Railken\LaraOre\Generators\PdfGenerator",
-        'text/html'       => "Railken\LaraOre\Generators\HtmlGenerator",
-        'text/plain'      => "Railken\LaraOre\Generators\TextGenerator",
-        'application/xls' => "Railken\LaraOre\Generators\ExcelGenerator",
+        'application/pdf' => Railken\Template\Generators\PdfGenerator::class,
+        'text/html'       => Railken\Template\Generators\HtmlGenerator::class,
+        'text/plain'      => Railken\Template\Generators\TextGenerator::class,
+        'application/xls' => Railken\Template\Generators\ExcelGenerator::class,
     ],
 
     /*

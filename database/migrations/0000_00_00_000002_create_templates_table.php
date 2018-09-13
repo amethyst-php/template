@@ -18,9 +18,10 @@ class CreateTemplatesTable extends Migration
             $table->string('filename');
             $table->string('filetype');
             $table->text('description')->nullable();
-            $table->text('mock_data');
             $table->longtext('content')->nullable();
             $table->string('checksum', 40);
+            $table->integer('data_builder_id')->unsigned()->nullable();
+            $table->foreign('data_builder_id')->references('id')->on(Config::get('ore.data-builder.table'));
             $table->timestamps();
         });
     }

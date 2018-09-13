@@ -4,6 +4,7 @@ namespace Railken\LaraOre\Template;
 
 use Faker\Factory;
 use Railken\Bag;
+use Railken\LaraOre\DataBuilder\DataBuilderFaker;
 use Railken\Laravel\Manager\BaseFaker;
 
 class TemplateFaker extends BaseFaker
@@ -26,7 +27,7 @@ class TemplateFaker extends BaseFaker
         $bag->set('filetype', 'application/pdf');
         $bag->set('description', 'A description');
         $bag->set('content', 'The cake is a {{ message }}');
-        $bag->set('mock_data', ['message' => 'text']);
+        $bag->set('data_builder', DataBuilderFaker::make()->parameters()->toArray());
 
         return $bag;
     }

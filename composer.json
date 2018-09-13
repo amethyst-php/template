@@ -11,7 +11,10 @@
         "fzaninotto/faker": "^1.7",
         "railken/lara-ore-api": "dev-master",
         "railken/lara-ore-support": "dev-master",
-        "dompdf/dompdf": "^0.8.2"
+        "railken/lara-ore-data-builder": "dev-master",
+        "railken/lara-ore-repository": "dev-master",
+        "dompdf/dompdf": "^0.8.2",
+        "railken/template": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~7.0",

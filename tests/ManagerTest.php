@@ -36,7 +36,7 @@ class ManagerTest extends BaseTest
         $parameters = TemplateFaker::make()->parameters()
             ->set('filetype', 'application/pdf')
             ->set('content', 'The cake is a {{ message }}')
-            ->set('mock_data', ['message' => 'lie']);
+            ->set('data_builder.mock_data', ['message' => 'lie']);
 
         $resource = $this->getManager()->create($parameters)->getResource();
         $rendered = $this->getManager()->renderMock($resource);
@@ -57,7 +57,7 @@ class ManagerTest extends BaseTest
         $parameters = TemplateFaker::make()->parameters()
             ->set('filetype', 'text/html')
             ->set('content', 'The cake is a <b>{{ message }}</b>')
-            ->set('mock_data', ['message' => 'lie']);
+            ->set('data_builder.mock_data', ['message' => 'lie']);
 
         $resource = $this->getManager()->create($parameters)->getResource();
         $rendered = $this->getManager()->renderMock($resource);

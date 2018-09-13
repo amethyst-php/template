@@ -7,6 +7,9 @@ use Railken\LaraOre\Api\Http\Controllers\RestConfigurableController;
 use Railken\LaraOre\Api\Http\Controllers\Traits as RestTraits;
 use Railken\LaraOre\Template\TemplateManager;
 
+/**
+ * @method TemplateManager getManager()
+ */
 class TemplatesController extends RestConfigurableController
 {
     use RestTraits\RestIndexTrait;
@@ -34,7 +37,7 @@ class TemplatesController extends RestConfigurableController
         'filetype',
         'description',
         'content',
-        'mock_data',
+        'data_builder_id',
         'created_at',
         'updated_at',
     ];
@@ -50,7 +53,8 @@ class TemplatesController extends RestConfigurableController
         'filetype',
         'description',
         'content',
-        'mock_data',
+        'data_builder_id',
+        'data_builder',
     ];
 
     /**
@@ -62,10 +66,8 @@ class TemplatesController extends RestConfigurableController
      */
     public function render(Request $request)
     {
-        $manager = new TemplateManager();
-
         try {
-            $content = $manager->renderRaw(strval($request->input('filetype')), strval($request->input('content')), (array) $request->input('data'));
+            $content = $this->getManager()->renderRaw(strval($request->input('filetype')), strval($request->input('content')), (array) $request->input('data'));
         } catch (\Twig_Error_Syntax $e) {
             return $this->error(['errors' => [['code' => 'SYNTAX_ERROR', 'message' => sprintf('%s at line %s', $e->getRawMessage(), $e->getTemplateLine())]]]);
         }

@@ -2,9 +2,10 @@
 
 namespace Railken\LaraOre;
 
-use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Railken\LaraOre\Api\Support\Router;
@@ -42,6 +43,10 @@ class TemplateServiceProvider extends ServiceProvider
         config(['ore.managers' => array_merge(Config::get('ore.managers', []), [
             \Railken\LaraOre\Template\TemplateManager::class,
         ])]);
+
+        Event::listen([\Railken\LaraOre\Events\TemplateViewUpdated::class], function ($event) {
+            Artisan::call('queue:restart');
+        });
     }
 
     /**
@@ -51,8 +56,8 @@ class TemplateServiceProvider extends ServiceProvider
     {
         $this->app->register(\Railken\Laravel\Manager\ManagerServiceProvider::class);
         $this->app->register(\Railken\LaraOre\ApiServiceProvider::class);
-        $this->app->register(\TwigBridge\ServiceProvider::class);
-        AliasLoader::getInstance()->alias('Twig', \TwigBridge\Facade\Twig::class);
+        $this->app->register(\Railken\LaraOre\DataBuilderServiceProvider::class);
+        $this->app->register(\Railken\Template\TemplateServiceProvider::class);
 
         $this->mergeConfigFrom(__DIR__.'/../config/ore.template.php', 'ore.template');
     }

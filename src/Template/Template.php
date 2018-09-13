@@ -4,16 +4,18 @@ namespace Railken\LaraOre\Template;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
+use Railken\LaraOre\DataBuilder\DataBuilder;
 use Railken\Laravel\Manager\Contracts\EntityContract;
 
 /**
- * @property string $name
- * @property string $description
- * @property string $filename
- * @property string $filetype
- * @property string $content
- * @property array  $mock_data
- * @property string $checksum
+ * @property string      $name
+ * @property string      $description
+ * @property string      $filename
+ * @property string      $filetype
+ * @property string      $content
+ * @property array       $mock_data
+ * @property string      $checksum
+ * @property DataBuilder $data_builder
  */
 class Template extends Model implements EntityContract
 {
@@ -35,18 +37,8 @@ class Template extends Model implements EntityContract
         'filename',
         'filetype',
         'content',
-        'mock_data',
         'hash',
         'checksum',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'mock_data' => 'array',
     ];
 
     /**
@@ -69,5 +61,13 @@ class Template extends Model implements EntityContract
         $m = new TemplateManager();
 
         return $m->getPathTemplates().'/'.$this->filename.'.twig';
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function data_builder()
+    {
+        return $this->belongsTo(DataBuilder::class);
     }
 }

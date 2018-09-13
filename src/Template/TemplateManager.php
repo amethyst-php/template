@@ -30,9 +30,9 @@ class TemplateManager extends ModelManager
         Attributes\Filename\FilenameAttribute::class,
         Attributes\Filetype\FiletypeAttribute::class,
         Attributes\Description\DescriptionAttribute::class,
-        Attributes\MockData\MockDataAttribute::class,
         Attributes\Content\ContentAttribute::class,
         Attributes\Checksum\ChecksumAttribute::class,
+        Attributes\DataBuilderId\DataBuilderIdAttribute::class,
     ];
 
     /**
@@ -74,7 +74,7 @@ class TemplateManager extends ModelManager
      *
      * @param string $filetype
      *
-     * @return \Railken\LaraOre\Generators\GeneratorContract
+     * @return \Railken\Template\Generators\GeneratorContract
      */
     public function getGeneratorOrFail(string $filetype)
     {
@@ -116,7 +116,7 @@ class TemplateManager extends ModelManager
         $generator = $this->getGeneratorOrFail($filetype);
         $generator = new $generator();
 
-        return $generator->generateAndRender($content, $this->convertSchemeIntoMockData($data));
+        return $generator->generateAndRender($content, $data);
     }
 
     /**
@@ -128,42 +128,7 @@ class TemplateManager extends ModelManager
      */
     public function renderMock(Template $template)
     {
-        return $this->render($template, $template->mock_data);
-    }
-
-    /**
-     * Parse schema.
-     *
-     * @param array $schema
-     *
-     * @return array
-     */
-    public function convertSchemeIntoMockData(array $schema)
-    {
-        $data = [];
-        $faker = \Faker\Factory::create();
-
-        foreach ($schema as $name => $record) {
-            if (is_array($record) || is_object($record)) {
-                $value = $record;
-            } elseif (is_string($record)) {
-                try {
-                    $value = $faker->{$record};
-                } catch (\Exception $e) {
-                    $value = $record;
-                }
-
-                if (class_exists($record)) {
-                    $value = $record::make()->entity();
-                }
-            } else {
-                $value = $record;
-            }
-
-            $data[$name] = $value;
-        }
-
-        return $data;
+        return $this->render($template, (array) $template->data_builder->mock_data);
     }
 
     /**

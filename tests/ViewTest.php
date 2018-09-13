@@ -42,7 +42,7 @@ class ViewTest extends BaseTest
             ->set('filename', 'html-test')
             ->set('filetype', 'text/html')
             ->set('content', "{% extends 'ore::html-test-base' %}{% block content %}{{ message }}{% endblock %}")
-            ->set('mock_data', ['message' => 'lie']);
+            ->set('data_builder.mock_data', ['message' => 'lie']);
 
         $result = $this->getManager()->create($parameters);
         $this->assertEquals(true, $result->ok());
