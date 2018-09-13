@@ -39,7 +39,7 @@ class ManagerTest extends BaseTest
             ->set('data_builder.mock_data', ['message' => 'lie']);
 
         $resource = $this->getManager()->create($parameters)->getResource();
-        $rendered = $this->getManager()->renderMock($resource);
+        $rendered = $this->getManager()->renderMock($resource)->getResource()['content'];
 
         $tmpfile = __DIR__.'/../var/cache/dummy.pdf';
 
@@ -60,7 +60,7 @@ class ManagerTest extends BaseTest
             ->set('data_builder.mock_data', ['message' => 'lie']);
 
         $resource = $this->getManager()->create($parameters)->getResource();
-        $rendered = $this->getManager()->renderMock($resource);
+        $rendered = $this->getManager()->renderMock($resource)->getResource()['content'];
 
         $this->assertEquals('The cake is a <b>lie</b>', $rendered);
     }
@@ -87,7 +87,7 @@ class ManagerTest extends BaseTest
             ->set('mock_data', ['message' => 'lie']);
 
         $resource = $this->getManager()->create($parameters)->getResource();
-        $rendered = $this->getManager()->renderMock($resource);
+        $rendered = $this->getManager()->renderMock($resource)->getResource()['content'];
 
         $tmpfile = __DIR__.'/../var/cache/dummy.xlsx';
 

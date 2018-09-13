@@ -5,6 +5,7 @@ namespace Railken\LaraOre\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Railken\LaraOre\Api\Http\Controllers\RestConfigurableController;
 use Railken\LaraOre\Api\Http\Controllers\Traits as RestTraits;
+use Railken\LaraOre\DataBuilder\DataBuilderManager;
 use Railken\LaraOre\Template\TemplateManager;
 
 /**
@@ -66,12 +67,44 @@ class TemplatesController extends RestConfigurableController
      */
     public function render(Request $request)
     {
-        try {
-            $content = $this->getManager()->renderRaw(strval($request->input('filetype')), strval($request->input('content')), (array) $request->input('data'));
-        } catch (\Twig_Error_Syntax $e) {
-            return $this->error(['errors' => [['code' => 'SYNTAX_ERROR', 'message' => sprintf('%s at line %s', $e->getRawMessage(), $e->getTemplateLine())]]]);
+        $dbm = (new DataBuilderManager());
+
+        /** @var \Railken\LaraOre\DataBuilder\DataBuilder */
+        $data_builder = $dbm->getRepository()->findOneById(intval($request->input('data_builder_id')));
+
+        if ($data_builder == null) {
+            return $this->error([['message' => 'invalid data_builder_id']]);
         }
 
-        return $this->success(['resource' => base64_encode($content)]);
+        $data = (array) $request->input('data');
+
+        $result = $dbm->build($data_builder, $data);
+
+        if (!$result->ok()) {
+            return $this->error(['errors' => $result->getSimpleErrors()]);
+        }
+
+        $data = array_merge($data, $result->getResource());
+
+        if ($result->ok()) {
+            $result = $this->getManager()->render(
+                $data_builder,
+                strval($request->input('filetype')),
+                [
+                    'content' => strval($request->input('content')),
+                ],
+                $data
+            );
+        }
+
+        if (!$result->ok()) {
+            return $this->error(['errors' => $result->getSimpleErrors()]);
+        }
+
+        $resource = $result->getResource();
+
+        return $this->success(['resource' => [
+            'content'    => base64_encode($resource['content']),
+        ]]);
     }
 }

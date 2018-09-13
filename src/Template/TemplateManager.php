@@ -2,10 +2,14 @@
 
 namespace Railken\LaraOre\Template;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
+use Railken\Bag;
+use Railken\LaraOre\DataBuilder\DataBuilder;
 use Railken\LaraOre\Events\TemplateViewUpdated;
 use Railken\Laravel\Manager\Contracts\AgentContract;
 use Railken\Laravel\Manager\ModelManager;
+use Railken\Laravel\Manager\Result;
 use Railken\Laravel\Manager\Tokens;
 
 class TemplateManager extends ModelManager
@@ -90,16 +94,32 @@ class TemplateManager extends ModelManager
     }
 
     /**
-     * Render given template with data.
+     * Render an email.
      *
-     * @param Template $template
-     * @param array    $data
+     * @param DataBuilder $data_builder
+     * @param string      $filetype
+     * @param array       $parameters
+     * @param array       $data
      *
-     * @return mixed
+     * @return \Railken\Laravel\Manager\Contracts\ResultContract
      */
-    public function render(Template $template, array $data)
+    public function render(DataBuilder $data_builder, string $filetype, $parameters, array $data = [])
     {
-        return $this->renderRaw($template->filetype, $template->content, $data);
+        $result = new Result();
+
+        try {
+            $bag = new Bag($parameters);
+
+            $bag->set('content', $this->renderRaw($filetype, strval($bag->get('content')), $data));
+
+            $result->setResources(new Collection([$bag->toArray()]));
+        } catch (\Twig_Error $e) {
+            $e = new Exceptions\TemplateRenderException($e->getRawMessage().' on line '.$e->getTemplateLine());
+
+            $result->addErrors(new Collection([$e]));
+        }
+
+        return $result;
     }
 
     /**
@@ -128,7 +148,7 @@ class TemplateManager extends ModelManager
      */
     public function renderMock(Template $template)
     {
-        return $this->render($template, (array) $template->data_builder->mock_data);
+        return $this->render($template->data_builder, $template->filetype, ['content' => $template->content], (array) $template->data_builder->mock_data);
     }
 
     /**

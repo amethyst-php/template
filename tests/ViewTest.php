@@ -48,7 +48,7 @@ class ViewTest extends BaseTest
         $this->assertEquals(true, $result->ok());
         $resource = $result->getResource();
 
-        $rendered = $this->getManager()->renderMock($resource);
+        $rendered = $this->getManager()->renderMock($resource)->getResource()['content'];
 
         $this->assertEquals('The following is a block: lie', $rendered);
     }

@@ -4,6 +4,8 @@ namespace Railken\LaraOre\Template\Tests;
 
 use Illuminate\Support\Facades\Config;
 use Railken\LaraOre\Api\Support\Testing\TestableBaseTrait;
+use Railken\LaraOre\DataBuilder\DataBuilderFaker;
+use Railken\LaraOre\DataBuilder\DataBuilderManager;
 use Railken\LaraOre\Template\TemplateFaker;
 
 class ApiTest extends BaseTest
@@ -36,17 +38,23 @@ class ApiTest extends BaseTest
      */
     public function testRender()
     {
+        $manager = new DataBuilderManager();
+
+        $result = $manager->create(DataBuilderFaker::make()->parameters());
+        $this->assertEquals(1, $result->ok());
+
         $response = $this->callAndTest('POST', $this->getResourceUrl().'/render', [
-            'filetype' => 'text/plain',
-            'content'  => 'Hello {{ message }}',
-            'data'     => [
+            'filetype'        => 'text/plain',
+            'content'         => 'Hello {{ message }}',
+            'data_builder_id' => $result->getResource()->id,
+            'data'            => [
                 'message' => 'dear',
             ],
         ], 200);
 
         $body = json_decode($response->getContent());
 
-        $this->assertEquals(base64_decode($body->resource), 'Hello dear');
+        $this->assertEquals(base64_decode($body->resource->content), 'Hello dear');
     }
 
     /**
@@ -54,16 +62,22 @@ class ApiTest extends BaseTest
      */
     public function testRenderError()
     {
+        $manager = new DataBuilderManager();
+
+        $result = $manager->create(DataBuilderFaker::make()->parameters());
+        $this->assertEquals(1, $result->ok());
+
         $response = $this->callAndTest('POST', $this->getResourceUrl().'/render', [
-            'filetype' => 'text/plain',
-            'content'  => 'Hello {{ message',
-            'data'     => [
+            'filetype'        => 'text/plain',
+            'content'         => 'Hello {{ message',
+            'data_builder_id' => $result->getResource()->id,
+            'data'            => [
                 'message' => 'dear',
             ],
         ], 400);
 
         $body = json_decode($response->getContent());
 
-        $this->assertEquals('SYNTAX_ERROR', $body->errors[0]->code);
+        $this->assertEquals('TEMPLATE_RENDER_ERROR', $body->errors[0]->code);
     }
 }
