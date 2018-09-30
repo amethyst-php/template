@@ -1,6 +1,6 @@
 <?php
 
-namespace Railken\LaraOre\Events;
+namespace Railken\Amethyst\Events;
 
 use Illuminate\Queue\SerializesModels;
 

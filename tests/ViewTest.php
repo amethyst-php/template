@@ -1,28 +1,20 @@
 <?php
 
-namespace Railken\LaraOre\Template\Tests;
+namespace Railken\Amethyst\Tests;
 
-use Railken\LaraOre\Support\Testing\ManagerTestableTrait;
-use Railken\LaraOre\Template\TemplateFaker;
-use Railken\LaraOre\Template\TemplateManager;
+use Railken\Amethyst\Fakers\TemplateFaker;
+use Railken\Amethyst\Managers\TemplateManager;
 
 class ViewTest extends BaseTest
 {
-    use ManagerTestableTrait;
-
     /**
      * Retrieve basic url.
      *
-     * @return \Railken\LaraOre\Template\TemplateManager
+     * @return \Railken\Amethyst\Managers\TemplateManager
      */
     public function getManager()
     {
         return new TemplateManager();
-    }
-
-    public function testSuccessCommon()
-    {
-        $this->commonTest($this->getManager(), TemplateFaker::make()->parameters());
     }
 
     public function testHtmlExtendsRender()
@@ -41,7 +33,7 @@ class ViewTest extends BaseTest
         $parameters = TemplateFaker::make()->parameters()
             ->set('filename', 'html-test')
             ->set('filetype', 'text/html')
-            ->set('content', "{% extends 'ore::html-test-base' %}{% block content %}{{ message }}{% endblock %}")
+            ->set('content', "{% extends 'amethyst::html-test-base' %}{% block content %}{{ message }}{% endblock %}")
             ->set('data_builder.mock_data', ['message' => 'lie']);
 
         $result = $this->getManager()->create($parameters);

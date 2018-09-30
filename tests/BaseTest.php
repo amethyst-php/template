@@ -1,6 +1,6 @@
 <?php
 
-namespace Railken\LaraOre\Template\Tests;
+namespace Railken\Amethyst\Tests;
 
 abstract class BaseTest extends \Orchestra\Testbench\TestCase
 {
@@ -15,13 +15,12 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         parent::setUp();
 
         $this->artisan('migrate:fresh');
-        // $this->artisan('vendor:publish', ['--provider' => 'Railken\LaraOre\TemplateServiceProvider', '--force' => true]);
     }
 
     protected function getPackageProviders($app)
     {
         return [
-            \Railken\LaraOre\TemplateServiceProvider::class,
+            \Railken\Amethyst\Providers\TemplateServiceProvider::class,
         ];
     }
 }
