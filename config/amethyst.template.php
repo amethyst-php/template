@@ -134,7 +134,7 @@ return [
     | The folder where the view templates will be saved
     |
     */
-    'views' => '/lara-ore-template/views',
+    'views' => '/amethyst-template/views',
 
     /*
     |--------------------------------------------------------------------------
@@ -144,5 +144,5 @@ return [
     | The cache folder
     |
     */
-    'cache' => '/lara-ore-template/cache',
+    'cache' => '/amethyst-template/cache',
 ];
