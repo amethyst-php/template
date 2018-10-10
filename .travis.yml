@@ -13,6 +13,7 @@ addons:
       - mysql-server
       - mysql-client
       - libxml2-utils
+      - poppler-utils
       
 php:
   - 7.1
