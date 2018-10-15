@@ -45,7 +45,7 @@ class TemplateServiceProvider extends CommonServiceProvider
         $m = new \Railken\Amethyst\Managers\TemplateManager();
         $path = $m->getPathTemplates();
 
-        if (Schema::hasTable(Config::get('amethyst.template.managers.template.table'))) {
+        if (Schema::hasTable(Config::get('amethyst.template.data.template.table'))) {
             $m->loadViews();
         }
 

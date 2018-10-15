@@ -12,7 +12,7 @@ class CreateTemplatesTable extends Migration
      */
     public function up()
     {
-        Schema::create(Config::get('amethyst.template.managers.template.table'), function (Blueprint $table) {
+        Schema::create(Config::get('amethyst.template.data.template.table'), function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('filename');
@@ -21,7 +21,7 @@ class CreateTemplatesTable extends Migration
             $table->longtext('content')->nullable();
             $table->string('checksum', 40);
             $table->integer('data_builder_id')->unsigned()->nullable();
-            $table->foreign('data_builder_id')->references('id')->on(Config::get('amethyst.data-builder.managers.data-builder.table'));
+            $table->foreign('data_builder_id')->references('id')->on(Config::get('amethyst.data-builder.data.data-builder.table'));
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +32,6 @@ class CreateTemplatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(Config::get('amethyst.template.managers.template.table'));
+        Schema::dropIfExists(Config::get('amethyst.template.data.template.table'));
     }
 }

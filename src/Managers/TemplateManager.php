@@ -4,6 +4,7 @@ namespace Railken\Amethyst\Managers;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
+use Railken\Amethyst\Common\ConfigurableManager;
 use Railken\Amethyst\Events\TemplateViewUpdated;
 use Railken\Amethyst\Exceptions;
 use Railken\Amethyst\Models\DataBuilder;
@@ -14,20 +15,12 @@ use Railken\Lem\Result;
 
 class TemplateManager extends Manager
 {
-    /**
-     * Describe this manager.
-     *
-     * @var string
-     */
-    public $comment = '...';
+    use ConfigurableManager;
 
     /**
-     * Register Classes.
+     * @var string
      */
-    public function registerClasses()
-    {
-        return Config::get('amethyst.template.managers.template');
-    }
+    protected $config = 'amethyst.template.data.template';
 
     /**
      * Retrieve the generator given the template or throw exception.
