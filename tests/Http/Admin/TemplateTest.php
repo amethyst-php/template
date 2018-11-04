@@ -27,11 +27,11 @@ class TemplateTest extends BaseTest
     protected $group = 'admin';
 
     /**
-     * Base path config.
+     * Route name.
      *
      * @var string
      */
-    protected $config = 'amethyst.template.http.admin.template';
+    protected $route = 'admin.template';
 
     /**
      * Test correct render.
@@ -43,7 +43,7 @@ class TemplateTest extends BaseTest
         $result = $manager->create(DataBuilderFaker::make()->parameters());
         $this->assertEquals(1, $result->ok());
 
-        $response = $this->callAndTest('POST', $this->getResourceUrl().'/render', [
+        $response = $this->callAndTest('POST', route('admin.template.render'), [
             'filetype'        => 'text/plain',
             'content'         => 'Hello {{ message }}',
             'data_builder_id' => $result->getResource()->id,
@@ -67,7 +67,7 @@ class TemplateTest extends BaseTest
         $result = $manager->create(DataBuilderFaker::make()->parameters());
         $this->assertEquals(1, $result->ok());
 
-        $response = $this->callAndTest('POST', $this->getResourceUrl().'/render', [
+        $response = $this->callAndTest('POST', route('admin.template.render'), [
             'filetype'        => 'text/plain',
             'content'         => 'Hello {{ message',
             'data_builder_id' => $result->getResource()->id,
