@@ -63,7 +63,7 @@ class TemplateServiceProvider extends CommonServiceProvider
             Router::group('admin', Arr::get($config, 'router'), function ($router) use ($config) {
                 $controller = Arr::get($config, 'controller');
 
-                $router->post('/render', ['uses' => $controller.'@render']);
+                $router->post('/render', ['as' => 'render', 'uses' => $controller.'@render']);
             });
         }
     }
