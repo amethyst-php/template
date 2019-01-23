@@ -23,8 +23,10 @@ class TemplateSchema extends Schema
                 ->setRequired(true)
                 ->setUnique(true),
             Attributes\LongTextAttribute::make('description'),
-            Attributes\TextAttribute::make('filename'),
-            Attributes\EnumAttribute::make('filetype', array_keys(Config::get('amethyst.template.generators', []))),
+            Attributes\TextAttribute::make('filename')
+                ->setRequired(true),
+            Attributes\EnumAttribute::make('filetype', array_keys(Config::get('amethyst.template.generators', [])))
+                ->setRequired(true),
             Attributes\LongTextAttribute::make('content'),
             AmethystAttributes\FileChecksumAttribute::make('checksum'),
             Attributes\BelongsToAttribute::make('data_builder_id')

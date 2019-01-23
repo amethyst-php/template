@@ -54,7 +54,7 @@ class TemplateTest extends BaseTest
 
         $body = json_decode($response->getContent());
 
-        $this->assertEquals(base64_decode($body->resource->content), 'Hello dear');
+        $this->assertEquals(base64_decode($body->resource->content, true), 'Hello dear');
     }
 
     /**

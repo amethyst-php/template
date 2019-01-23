@@ -7,6 +7,7 @@ use Railken\Amethyst\Managers\TemplateManager;
 use Railken\Amethyst\Tests\BaseTest;
 use Railken\Lem\Support\Testing\TestableBaseTrait;
 use Spatie\PdfToText\Pdf;
+use Symfony\Component\Yaml\Yaml;
 
 class TemplateTest extends BaseTest
 {
@@ -31,7 +32,7 @@ class TemplateTest extends BaseTest
         $parameters = TemplateFaker::make()->parameters()
             ->set('filetype', 'application/pdf')
             ->set('content', 'The cake is a {{ message }}')
-            ->set('data_builder.mock_data', ['message' => 'lie']);
+            ->set('data_builder.mock_data', Yaml::dump(['message' => 'lie']));
 
         $resource = $this->getManager()->create($parameters)->getResource();
         $rendered = $this->getManager()->renderMock($resource)->getResource()['content'];
@@ -52,7 +53,7 @@ class TemplateTest extends BaseTest
         $parameters = TemplateFaker::make()->parameters()
             ->set('filetype', 'text/html')
             ->set('content', 'The cake is a <b>{{ message }}</b>')
-            ->set('data_builder.mock_data', ['message' => 'lie']);
+            ->set('data_builder.mock_data', Yaml::dump(['message' => 'lie']));
 
         $resource = $this->getManager()->create($parameters)->getResource();
         $rendered = $this->getManager()->renderMock($resource)->getResource()['content'];
@@ -79,7 +80,7 @@ class TemplateTest extends BaseTest
                 {% endxlssheet %}
             {% endxlsdocument %}
             ')
-            ->set('mock_data', ['message' => 'lie']);
+            ->set('mock_data', Yaml::dump(['message' => 'lie']));
 
         $resource = $this->getManager()->create($parameters)->getResource();
         $rendered = $this->getManager()->renderMock($resource)->getResource()['content'];
