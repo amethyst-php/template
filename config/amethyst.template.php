@@ -35,11 +35,11 @@ return [
     'http' => [
         'admin' => [
             'template' => [
-                'enabled'     => true,
-                'controller'  => Railken\Amethyst\Http\Controllers\Admin\TemplatesController::class,
-                'router'      => [
-                    'as'        => 'template.',
-                    'prefix'    => '/templates',
+                'enabled'    => true,
+                'controller' => Railken\Amethyst\Http\Controllers\Admin\TemplatesController::class,
+                'router'     => [
+                    'as'     => 'template.',
+                    'prefix' => '/templates',
                 ],
             ],
         ],

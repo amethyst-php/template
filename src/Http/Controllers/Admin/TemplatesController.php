@@ -69,7 +69,7 @@ class TemplatesController extends RestManagerController
         $resource = $result->getResource();
 
         return $this->success(['resource' => [
-            'content'    => base64_encode($resource['content']),
+            'content' => base64_encode($resource['content']),
         ]]);
     }
 }
