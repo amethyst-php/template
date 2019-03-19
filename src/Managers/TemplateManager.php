@@ -12,6 +12,7 @@ use Railken\Amethyst\Models\Template;
 use Railken\Bag;
 use Railken\Lem\Manager;
 use Railken\Lem\Result;
+use Symfony\Component\Yaml\Yaml;
 
 class TemplateManager extends Manager
 {
@@ -97,7 +98,7 @@ class TemplateManager extends Manager
      */
     public function renderMock(Template $template)
     {
-        return $this->render($template->data_builder, $template->filetype, ['content' => $template->content], (array) $template->data_builder->mock_data);
+        return $this->render($template->data_builder, $template->filetype, ['content' => $template->content], Yaml::parse((string) $template->data_builder->mock_data));
     }
 
     /**
