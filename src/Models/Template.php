@@ -49,6 +49,6 @@ class Template extends Model implements EntityContract
      */
     public function data_builder(): BelongsTo
     {
-        return $this->belongsTo(DataBuilder::class);
+        return $this->belongsTo(config('amethyst.data-builder.data.data-builder.model'));
     }
 }
