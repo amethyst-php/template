@@ -183,7 +183,7 @@ class TemplateManager extends Manager
         return [
             'components' => [
                 'renderer',
-            ]
+            ],
         ];
     }
 }
