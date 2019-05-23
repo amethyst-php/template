@@ -172,4 +172,18 @@ class TemplateManager extends Manager
             event(new TemplateViewUpdated());
         }
     }
+
+    /**
+     * Describe extra actions.
+     *
+     * @return array
+     */
+    public function getDescriptor()
+    {
+        return [
+            'components' => [
+                'renderer',
+            ]
+        ];
+    }
 }
