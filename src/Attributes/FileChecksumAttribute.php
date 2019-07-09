@@ -1,6 +1,6 @@
 <?php
 
-namespace Railken\Amethyst\Attributes;
+namespace Amethyst\Attributes;
 
 use Illuminate\Support\Collection;
 use Railken\Bag;
@@ -19,7 +19,7 @@ class FileChecksumAttribute extends TextAttribute
     /**
      * Update entity value.
      *
-     * @param \Railken\Amethyst\Models\Template $entity
+     * @param \Amethyst\Models\Template $entity
      * @param \Railken\Bag                      $parameters
      *
      * @return Collection

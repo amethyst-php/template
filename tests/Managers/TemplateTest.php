@@ -1,10 +1,10 @@
 <?php
 
-namespace Railken\Amethyst\Tests\Managers;
+namespace Amethyst\Tests\Managers;
 
-use Railken\Amethyst\Fakers\TemplateFaker;
-use Railken\Amethyst\Managers\TemplateManager;
-use Railken\Amethyst\Tests\BaseTest;
+use Amethyst\Fakers\TemplateFaker;
+use Amethyst\Managers\TemplateManager;
+use Amethyst\Tests\BaseTest;
 use Railken\Lem\Support\Testing\TestableBaseTrait;
 use Spatie\PdfToText\Pdf;
 use Symfony\Component\Yaml\Yaml;

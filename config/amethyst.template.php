@@ -13,14 +13,14 @@ return [
         'template' => [
             'table'      => 'amethyst_templates',
             'comment'    => 'Template',
-            'model'      => Railken\Amethyst\Models\Template::class,
-            'schema'     => Railken\Amethyst\Schemas\TemplateSchema::class,
-            'repository' => Railken\Amethyst\Repositories\TemplateRepository::class,
-            'serializer' => Railken\Amethyst\Serializers\TemplateSerializer::class,
-            'validator'  => Railken\Amethyst\Validators\TemplateValidator::class,
-            'authorizer' => Railken\Amethyst\Authorizers\TemplateAuthorizer::class,
-            'faker'      => Railken\Amethyst\Fakers\TemplateFaker::class,
-            'manager'    => Railken\Amethyst\Managers\TemplateManager::class,
+            'model'      => Amethyst\Models\Template::class,
+            'schema'     => Amethyst\Schemas\TemplateSchema::class,
+            'repository' => Amethyst\Repositories\TemplateRepository::class,
+            'serializer' => Amethyst\Serializers\TemplateSerializer::class,
+            'validator'  => Amethyst\Validators\TemplateValidator::class,
+            'authorizer' => Amethyst\Authorizers\TemplateAuthorizer::class,
+            'faker'      => Amethyst\Fakers\TemplateFaker::class,
+            'manager'    => Amethyst\Managers\TemplateManager::class,
         ],
     ],
 
@@ -36,7 +36,7 @@ return [
         'admin' => [
             'template' => [
                 'enabled'    => true,
-                'controller' => Railken\Amethyst\Http\Controllers\Admin\TemplatesController::class,
+                'controller' => Amethyst\Http\Controllers\Admin\TemplatesController::class,
                 'router'     => [
                     'as'     => 'template.',
                     'prefix' => '/templates',

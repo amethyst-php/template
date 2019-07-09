@@ -1,14 +1,14 @@
 <?php
 
-namespace Railken\Amethyst\Managers;
+namespace Amethyst\Managers;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
-use Railken\Amethyst\Common\ConfigurableManager;
-use Railken\Amethyst\Events\TemplateViewUpdated;
-use Railken\Amethyst\Exceptions;
-use Railken\Amethyst\Models\DataBuilder;
-use Railken\Amethyst\Models\Template;
+use Amethyst\Common\ConfigurableManager;
+use Amethyst\Events\TemplateViewUpdated;
+use Amethyst\Exceptions;
+use Amethyst\Models\DataBuilder;
+use Amethyst\Models\Template;
 use Railken\Bag;
 use Railken\Lem\Manager;
 use Railken\Lem\Result;

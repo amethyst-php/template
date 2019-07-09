@@ -1,9 +1,9 @@
 <?php
 
-namespace Railken\Amethyst\Tests;
+namespace Amethyst\Tests;
 
-use Railken\Amethyst\Fakers\TemplateFaker;
-use Railken\Amethyst\Managers\TemplateManager;
+use Amethyst\Fakers\TemplateFaker;
+use Amethyst\Managers\TemplateManager;
 use Symfony\Component\Yaml\Yaml;
 
 class ViewTest extends BaseTest
@@ -11,7 +11,7 @@ class ViewTest extends BaseTest
     /**
      * Retrieve basic url.
      *
-     * @return \Railken\Amethyst\Managers\TemplateManager
+     * @return \Amethyst\Managers\TemplateManager
      */
     public function getManager()
     {

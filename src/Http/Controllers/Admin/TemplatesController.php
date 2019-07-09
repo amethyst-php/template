@@ -1,12 +1,12 @@
 <?php
 
-namespace Railken\Amethyst\Http\Controllers\Admin;
+namespace Amethyst\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Railken\Amethyst\Api\Http\Controllers\RestManagerController;
-use Railken\Amethyst\Api\Http\Controllers\Traits as RestTraits;
-use Railken\Amethyst\Managers\DataBuilderManager;
-use Railken\Amethyst\Managers\TemplateManager;
+use Amethyst\Api\Http\Controllers\RestManagerController;
+use Amethyst\Api\Http\Controllers\Traits as RestTraits;
+use Amethyst\Managers\DataBuilderManager;
+use Amethyst\Managers\TemplateManager;
 
 class TemplatesController extends RestManagerController
 {
@@ -34,7 +34,7 @@ class TemplatesController extends RestManagerController
     {
         $dbm = (new DataBuilderManager());
 
-        /** @var \Railken\Amethyst\Models\DataBuilder */
+        /** @var \Amethyst\Models\DataBuilder */
         $data_builder = $dbm->getRepository()->findOneById(intval($request->input('data_builder_id')));
 
         if ($data_builder == null) {

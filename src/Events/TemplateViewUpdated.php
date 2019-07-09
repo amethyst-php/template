@@ -1,6 +1,6 @@
 <?php
 
-namespace Railken\Amethyst\Events;
+namespace Amethyst\Events;
 
 use Illuminate\Queue\SerializesModels;
 

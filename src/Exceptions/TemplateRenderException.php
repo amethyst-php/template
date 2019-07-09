@@ -1,6 +1,6 @@
 <?php
 
-namespace Railken\Amethyst\Exceptions;
+namespace Amethyst\Exceptions;
 
 use Railken\Lem\Exceptions\ModelException;
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace Railken\Amethyst\Providers;
+namespace Amethyst\Providers;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Schema;
-use Railken\Amethyst\Api\Support\Router;
-use Railken\Amethyst\Common\CommonServiceProvider;
+use Amethyst\Api\Support\Router;
+use Amethyst\Common\CommonServiceProvider;
 
 class TemplateServiceProvider extends CommonServiceProvider
 {
@@ -20,7 +20,7 @@ class TemplateServiceProvider extends CommonServiceProvider
         parent::register();
         $this->loadExtraRoutes();
 
-        $this->app->register(\Railken\Amethyst\Providers\DataBuilderServiceProvider::class);
+        $this->app->register(\Amethyst\Providers\DataBuilderServiceProvider::class);
         $this->app->register(\Railken\Template\TemplateServiceProvider::class);
     }
 
@@ -32,7 +32,7 @@ class TemplateServiceProvider extends CommonServiceProvider
         parent::boot();
         $this->loadViews();
 
-        Event::listen([\Railken\Amethyst\Events\TemplateViewUpdated::class], function ($event) {
+        Event::listen([\Amethyst\Events\TemplateViewUpdated::class], function ($event) {
             Artisan::call('queue:restart');
         });
     }
@@ -42,7 +42,7 @@ class TemplateServiceProvider extends CommonServiceProvider
      */
     public function loadViews()
     {
-        $m = new \Railken\Amethyst\Managers\TemplateManager();
+        $m = new \Amethyst\Managers\TemplateManager();
         $path = $m->getPathTemplates();
 
         if (Schema::hasTable(Config::get('amethyst.template.data.template.table'))) {

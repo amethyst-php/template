@@ -1,12 +1,12 @@
 <?php
 
-namespace Railken\Amethyst\Models;
+namespace Amethyst\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Railken\Amethyst\Common\ConfigurableModel;
-use Railken\Amethyst\Managers\TemplateManager;
+use Amethyst\Common\ConfigurableModel;
+use Amethyst\Managers\TemplateManager;
 use Railken\Lem\Contracts\EntityContract;
 
 /**
