@@ -2,9 +2,9 @@
 
 namespace Amethyst\Schemas;
 
-use Illuminate\Support\Facades\Config;
 use Amethyst\Attributes as AmethystAttributes;
 use Amethyst\Managers\DataBuilderManager;
+use Illuminate\Support\Facades\Config;
 use Railken\Lem\Attributes;
 use Railken\Lem\Schema;
 

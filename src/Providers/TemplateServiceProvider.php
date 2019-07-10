@@ -2,13 +2,13 @@
 
 namespace Amethyst\Providers;
 
+use Amethyst\Api\Support\Router;
+use Amethyst\Common\CommonServiceProvider;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Schema;
-use Amethyst\Api\Support\Router;
-use Amethyst\Common\CommonServiceProvider;
 
 class TemplateServiceProvider extends CommonServiceProvider
 {

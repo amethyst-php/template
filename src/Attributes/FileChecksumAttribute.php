@@ -20,7 +20,7 @@ class FileChecksumAttribute extends TextAttribute
      * Update entity value.
      *
      * @param \Amethyst\Models\Template $entity
-     * @param \Railken\Bag                      $parameters
+     * @param \Railken\Bag              $parameters
      *
      * @return Collection
      */

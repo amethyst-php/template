@@ -2,13 +2,13 @@
 
 namespace Amethyst\Managers;
 
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Config;
 use Amethyst\Common\ConfigurableManager;
 use Amethyst\Events\TemplateViewUpdated;
 use Amethyst\Exceptions;
 use Amethyst\Models\DataBuilder;
 use Amethyst\Models\Template;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Config;
 use Railken\Bag;
 use Railken\Lem\Manager;
 use Railken\Lem\Result;
