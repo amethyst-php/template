@@ -15,12 +15,12 @@ use Railken\Lem\Result;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * @method \Amethyst\Models\Template newEntity()
- * @method \Amethyst\Schemas\TemplateSchema getSchema()
+ * @method \Amethyst\Models\Template                 newEntity()
+ * @method \Amethyst\Schemas\TemplateSchema          getSchema()
  * @method \Amethyst\Repositories\TemplateRepository getRepository()
- * @method \Amethyst\Serializers\TemplateSerializer getSerializer()
- * @method \Amethyst\Validators\TemplateValidator getValidator()
- * @method \Amethyst\Authorizers\TemplateAuthorizer getAuthorizer()
+ * @method \Amethyst\Serializers\TemplateSerializer  getSerializer()
+ * @method \Amethyst\Validators\TemplateValidator    getValidator()
+ * @method \Amethyst\Authorizers\TemplateAuthorizer  getAuthorizer()
  */
 class TemplateManager extends Manager
 {
