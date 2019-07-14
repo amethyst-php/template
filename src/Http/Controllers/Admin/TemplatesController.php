@@ -8,6 +8,9 @@ use Amethyst\Managers\DataBuilderManager;
 use Amethyst\Managers\TemplateManager;
 use Illuminate\Http\Request;
 
+/**
+ * @method \Amethyst\Managers\TemplateManager getManager()
+ */
 class TemplatesController extends RestManagerController
 {
     use RestTraits\RestIndexTrait;

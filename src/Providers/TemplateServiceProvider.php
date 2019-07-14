@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class TemplateServiceProvider extends CommonServiceProvider
 {
@@ -30,7 +31,17 @@ class TemplateServiceProvider extends CommonServiceProvider
     public function boot()
     {
         parent::boot();
-        $this->loadViews();
+
+        $this->app->booted(function() {
+            
+            try {
+                DB::connection()->getPdo();
+            } catch (\Exception $e) {
+                return;
+            }
+
+            $this->loadViews();
+        });
 
         Event::listen([\Amethyst\Events\TemplateViewUpdated::class], function ($event) {
             Artisan::call('queue:restart');

@@ -29,13 +29,16 @@ class TemplateTest extends BaseTest
 
     public function testPdfRender()
     {
+        /** @var \Amethyst\Managers\TemplateManager */
+        $manager = $this->getManager();
+
         $parameters = TemplateFaker::make()->parameters()
             ->set('filetype', 'application/pdf')
             ->set('content', 'The cake is a {{ message }}')
             ->set('data_builder.mock_data', Yaml::dump(['message' => 'lie']));
 
-        $resource = $this->getManager()->create($parameters)->getResource();
-        $rendered = $this->getManager()->renderMock($resource)->getResource()['content'];
+        $resource = $manager->create($parameters)->getResource();
+        $rendered = $manager->renderMock($resource)->getResource()['content'];
 
         $tmpfile = __DIR__.'/../../var/cache/dummy.pdf';
 
@@ -50,19 +53,25 @@ class TemplateTest extends BaseTest
 
     public function testHtmlRender()
     {
+        /** @var \Amethyst\Managers\TemplateManager */
+        $manager = $this->getManager();
+
         $parameters = TemplateFaker::make()->parameters()
             ->set('filetype', 'text/html')
             ->set('content', 'The cake is a <b>{{ message }}</b>')
             ->set('data_builder.mock_data', Yaml::dump(['message' => 'lie']));
 
-        $resource = $this->getManager()->create($parameters)->getResource();
-        $rendered = $this->getManager()->renderMock($resource)->getResource()['content'];
+        $resource = $manager->create($parameters)->getResource();
+        $rendered = $manager->renderMock($resource)->getResource()['content'];
 
         $this->assertEquals('The cake is a <b>lie</b>', $rendered);
     }
 
     public function testExcelRender()
     {
+        /** @var \Amethyst\Managers\TemplateManager */
+        $manager = $this->getManager();
+        
         $parameters = TemplateFaker::make()->parameters()
             ->set('filetype', 'application/xls')
             ->set('content', '{% xlsdocument %}
@@ -82,8 +91,8 @@ class TemplateTest extends BaseTest
             ')
             ->set('mock_data', Yaml::dump(['message' => 'lie']));
 
-        $resource = $this->getManager()->create($parameters)->getResource();
-        $rendered = $this->getManager()->renderMock($resource)->getResource()['content'];
+        $resource = $manager->create($parameters)->getResource();
+        $rendered = $manager->renderMock($resource)->getResource()['content'];
 
         $tmpfile = __DIR__.'/../../var/cache/dummy.xlsx';
 

@@ -154,6 +154,7 @@ class TemplateManager extends Manager
             mkdir($path, 0775, true);
         }
 
+        /** @var \Amethyst\Models\Template[] */
         $templates = $this->getRepository()->newQuery()->get();
 
         $files = collect(glob($path.'/*'));
