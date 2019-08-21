@@ -27,7 +27,7 @@ class FileChecksumAttribute extends TextAttribute
     public function update(EntityContract $entity, Bag $parameters)
     {
         if (!method_exists($this->getManager(), 'checksum')) {
-            throw new \Exception(sprintf("Missing checksum method"));
+            throw new \Exception(sprintf('Missing checksum method'));
         }
 
         $entity->checksum = $this->getManager()->checksum(!empty($entity->content) ? $entity->content : '');

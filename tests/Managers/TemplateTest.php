@@ -71,7 +71,7 @@ class TemplateTest extends BaseTest
     {
         /** @var \Amethyst\Managers\TemplateManager */
         $manager = $this->getManager();
-        
+
         $parameters = TemplateFaker::make()->parameters()
             ->set('filetype', 'application/xls')
             ->set('content', '{% xlsdocument %}

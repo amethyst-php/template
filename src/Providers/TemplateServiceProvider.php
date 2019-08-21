@@ -7,9 +7,9 @@ use Amethyst\Common\CommonServiceProvider;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
 class TemplateServiceProvider extends CommonServiceProvider
 {
@@ -32,8 +32,7 @@ class TemplateServiceProvider extends CommonServiceProvider
     {
         parent::boot();
 
-        $this->app->booted(function() {
-            
+        $this->app->booted(function () {
             try {
                 DB::connection()->getPdo();
             } catch (\Exception $e) {
