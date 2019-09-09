@@ -14,7 +14,7 @@ class CreateTemplatesTable extends Migration
     {
         Schema::create(Config::get('amethyst.template.data.template.table'), function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name')->index();
             $table->string('filename');
             $table->string('filetype');
             $table->text('description')->nullable();
