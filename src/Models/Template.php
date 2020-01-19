@@ -2,7 +2,7 @@
 
 namespace Amethyst\Models;
 
-use Amethyst\Common\ConfigurableModel;
+use Amethyst\Core\ConfigurableModel;
 use Amethyst\Managers\TemplateManager;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

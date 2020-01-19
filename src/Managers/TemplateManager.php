@@ -2,7 +2,7 @@
 
 namespace Amethyst\Managers;
 
-use Amethyst\Common\ConfigurableManager;
+use Amethyst\Core\ConfigurableManager;
 use Amethyst\Events\TemplateViewUpdated;
 use Amethyst\Exceptions;
 use Amethyst\Models\DataBuilder;
